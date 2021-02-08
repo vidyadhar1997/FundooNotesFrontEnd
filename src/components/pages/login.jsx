@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-
 import './Login.css';
 
 export default class Login extends Component{

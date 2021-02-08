@@ -1,0 +1,50 @@
+.cardContainers{
+    width: 700px;
+    height: 600px;
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+     flex-wrap: wrap;
+     flex-shrink: 1;
+     justify-content: space-evenly;
+    }
+    
+     .HomeContainers{
+        justify-content: center; 
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        flex-direction: row;
+        margin-top: 75px;
+    } 
+    .labless{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: -39px; 
+        padding-bottom: 20px;
+    }
+    .name{
+        display: flex;
+        width: 70%;
+        justify-content: space-between;
+    }
+    #emailTexts{
+    width: 29em;
+    }
+    #passwordTexts{
+        width: 27em;
+    }
+    #confirmPasswordText{
+        width: 27em;
+    }
+    #sign{
+        background-color: coral;
+        width: 13em;
+        height :58px;
+        color:white;
+        font-size: 20px;
+    }
+    
