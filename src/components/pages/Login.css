@@ -1,0 +1,40 @@
+.cardContainer{
+width: 600px;
+height: 550px;
+display: flex;
+ flex-direction: column;
+ align-items: center;
+ flex-wrap: wrap;
+ flex-shrink: 1;
+ justify-content: space-evenly;
+}
+
+.HomeContainer{
+    justify-content: center; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: row;
+    margin-top: 105px;
+}
+.lables{
+    display: flex;
+    justify-content: center;
+    margin-bottom: -68px;
+}
+
+#emailText{
+width: 23em;
+}
+#passwordText{
+    width: 21em;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained{
+    background-color: coral;
+    width: 20em;
+    height :58px;
+    color:white;
+    font-size: 20px;
+}
