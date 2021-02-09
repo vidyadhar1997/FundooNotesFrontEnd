@@ -7,7 +7,7 @@ export default class ForgetPassword extends Component {
     render() {
         return (
             <div className="Forget">
-                <Card className="cardContainerForget">
+                <Card className="cardsContainerForget">
                     <div>
                         <TextField id="emailForget" label="Email Id" variant="outlined" />
                     </div>
