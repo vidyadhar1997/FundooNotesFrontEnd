@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import './SignUp.css'
+import './ResetPassword.css';
 
-export default class SignUP extends Component {
+export default class ResetPassword extends Component {
   render() {
     return (
-      <div className="HomeContainers">
-        <Card className="cardContainers">
-          <div class="name">
-            <TextField label="First Name" variant="outlined" />
-            <TextField label="Last Name" variant="outlined" />
-          </div>
+      <div className="Reset">
+        <Card className="cardContainerReset">
           <div >
-            <TextField id="emailTexts" label="Email Id" variant="outlined" />
+            <TextField id="emailReset" label="Email Id" variant="outlined" />
           </div>
           <div>
-            <TextField id="passwordTexts" label="Password" variant="outlined" {...this.props}
+            <TextField id="passwordReset" label="Password" variant="outlined" {...this.props}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -28,7 +24,7 @@ export default class SignUP extends Component {
             />
           </div>
           <div>
-            <TextField id="confirmPasswordText" label="Confirm Password" variant="outlined" {...this.props}
+            <TextField id="confirmPasswordReset" label="Confirm Password" variant="outlined" {...this.props}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -38,10 +34,8 @@ export default class SignUP extends Component {
               }}
             />
           </div>
-
-          <div className="labless">
-            <Button id="sign" variant="contained" > SignUP </Button>
-            <h3>Have an account with us?<a href="http://localhost:8080/login">Login</a></h3>
+          <div>
+            <Button id="Submit" variant="contained" > Submit </Button>
           </div>
         </Card>
       </div>
