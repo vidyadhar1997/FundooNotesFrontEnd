@@ -19,18 +19,22 @@ display: flex;
     flex-direction: row;
     margin-top: 105px;
 }
+
 .lables{
     display: flex;
     justify-content: center;
-    margin-bottom: -68px;
+    margin-bottom: -60px;
+    font-size: 18px;
 }
 
 #emailText{
 width: 23em;
 }
+
 #passwordText{
     width: 21em;
 }
+
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained{
     background-color: coral;
     width: 20em;

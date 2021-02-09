@@ -27,14 +27,13 @@ export default class Login extends Component{
           <Button  variant="contained" > Login </Button>
           </div>
           <div className="lables">
-              <h3>Dont have an account with us?</h3>
+              <label>Dont have an account with us?</label>
           </div>
           <div>
-          <Button  variant="contained" > SignUP </Button>
+          <Button  variant="contained"> SignUP </Button>
           </div>
             </Card>
             </div>
-           
         )
     }
 }

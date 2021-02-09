@@ -19,6 +19,7 @@
         flex-direction: row;
         margin-top: 75px;
     } 
+
     .labless{
         display: flex;
         flex-direction: column;
@@ -26,20 +27,25 @@
         margin-bottom: -39px; 
         padding-bottom: 20px;
     }
+
     .name{
         display: flex;
         width: 70%;
         justify-content: space-between;
     }
+
     #emailTexts{
     width: 29em;
     }
+
     #passwordTexts{
         width: 27em;
     }
+
     #confirmPasswordText{
         width: 27em;
     }
+
     #sign{
         background-color: coral;
         width: 13em;
@@ -47,6 +53,7 @@
         color:white;
         font-size: 20px;
     }
+    
     h3{
         font-size: 19.5px;
     }
