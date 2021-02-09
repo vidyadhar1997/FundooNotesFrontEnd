@@ -28,16 +28,16 @@ display: flex;
 }
 
 #emailText{
-width: 23em;
+width: 27em;
 }
 
 #passwordText{
-    width: 21em;
+    width: 25em;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained{
     background-color: coral;
-    width: 20em;
+    width: 23em;
     height :58px;
     color:white;
     font-size: 20px;

@@ -30,30 +30,34 @@
 
     .name{
         display: flex;
-        width: 70%;
+        width: 77%;
         justify-content: space-between;
     }
 
+    #MuiOutlinedInput-input{
+        width: 14em;
+    }
+
     #emailTexts{
-    width: 29em;
+    width: 32em;
     }
 
     #passwordTexts{
-        width: 27em;
+        width: 30em;
     }
 
     #confirmPasswordText{
-        width: 27em;
+        width: 30em;
     }
 
     #sign{
         background-color: coral;
-        width: 13em;
+        width: 15em;
         height :58px;
         color:white;
         font-size: 20px;
     }
     
     h3{
-        font-size: 19.5px;
+        font-size: 22px;
     }

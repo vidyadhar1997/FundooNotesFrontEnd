@@ -10,8 +10,8 @@ export default class SignUP extends Component {
       <div className="HomeContainers">
         <Card className="cardContainers">
           <div class="name">
-            <TextField label="First Name" variant="outlined" />
-            <TextField label="Last Name" variant="outlined" />
+            <TextField id="MuiOutlinedInput-input" label="First Name" variant="outlined" />
+            <TextField id="MuiOutlinedInput-input" label="Last Name" variant="outlined" />
           </div>
           <div >
             <TextField id="emailTexts" label="Email Id" variant="outlined" />
