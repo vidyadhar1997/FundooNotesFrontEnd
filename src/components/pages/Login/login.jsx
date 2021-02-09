@@ -9,6 +9,14 @@ export default class Login extends Component{
         return(
            <div className="HomeContainer">
             <Card className="cardContainer">
+              <div className="fundooContainer">
+              <div className="blue">F</div>
+              <div className="red">u</div>
+              <div className="yellow">n</div>
+              <div className="blue">d</div>
+              <div className="green">o</div>
+              <div className="red">o</div>
+              </div>
             <div >
             <TextField id="emailText" label="Email Id" variant="outlined" />
             </div>

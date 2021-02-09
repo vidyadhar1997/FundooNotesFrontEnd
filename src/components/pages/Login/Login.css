@@ -1,6 +1,6 @@
 .cardContainer{
 width: 600px;
-height: 550px;
+height: 559px;
 display: flex;
  flex-direction: column;
  align-items: center;
@@ -17,14 +17,31 @@ display: flex;
     align-items: center;
     margin-top: 40px;
     flex-direction: row;
-    margin-top: 105px;
+    margin-top: 98px;
+}
+.fundooContainer{
+    display: flex;
+    flex-direction: row;
+    font-size: 40px;
+}
+.blue{
+    color: blue;
+}
+.red{
+    color: red;
+}
+.yellow{
+    color: yellow;
+}
+.green{
+    color: green;
 }
 
 .lables{
     display: flex;
     justify-content: center;
-    margin-bottom: -60px;
-    font-size: 18px;
+    margin-bottom: -43px;
+    font-size: 20px;
 }
 
 #emailText{
