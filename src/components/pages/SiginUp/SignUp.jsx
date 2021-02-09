@@ -3,8 +3,18 @@ import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import './SignUp.css'
+import { Link } from 'react-router-dom';
 
 export default class SignUP extends Component {
+  constructor(props){
+    super(props);
+  }
+  handleButton=()=>(
+    this.props.history.push("\login")
+  )
+  handleLogin=()=>{
+    this.props.history.push("\login")
+  }
   render() {
     return (
       <div className="HomeContainers">
@@ -48,8 +58,9 @@ export default class SignUP extends Component {
           </div>
 
           <div className="labless">
-            <Button id="sign" variant="contained" > SignUP </Button>
-            <h3>Have an account with us?<a href="http://localhost:8080/login">Login</a></h3>
+            <Button id="sign" variant="contained" onClick={this.handleButton} > SignUP </Button>
+            <label htmlFor="ask" id="askForLogin">Have an account with us ? 
+            <Link onClick={this.handleLogin}>Login</Link></label>
           </div>
         </Card>
       </div>

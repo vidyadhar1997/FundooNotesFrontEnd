@@ -40,7 +40,7 @@ display: flex;
 .lables{
     display: flex;
     justify-content: center;
-    margin-bottom: -43px;
+    margin-bottom: -38px;
     font-size: 20px;
 }
 
@@ -50,6 +50,12 @@ width: 27em;
 
 #passwordText{
     width: 25em;
+}
+
+.link{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 21px;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-contained{

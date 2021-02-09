@@ -5,6 +5,12 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import './ResetPassword.css';
 
 export default class ResetPassword extends Component {
+  constructor(props) {
+    super(props);
+}
+  handleReset = () => {
+  this.props.history.push('/login');
+}
   render() {
     return (
       <div className="Reset">
@@ -43,7 +49,7 @@ export default class ResetPassword extends Component {
             />
           </div>
           <div>
-            <Button id="Submit" variant="contained" > Submit </Button>
+            <Button id="Submit" variant="contained" onClick={this.handleReset} > Submit </Button>
           </div>
         </Card>
       </div>

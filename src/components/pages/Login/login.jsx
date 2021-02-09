@@ -5,6 +5,15 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import './Login.css';
 
 export default class Login extends Component{
+  constructor(props) {
+    super(props);
+}
+handleSignUP = () => {
+    this.props.history.push('/signup');
+}
+handleForgetLink = () => {
+  this.props.history.push('/forget');
+}
  render(){
         return(
            <div className="HomeContainer">
@@ -30,6 +39,9 @@ export default class Login extends Component{
                     ),
                   }}
                   />
+                    <div class="link">
+                    <label  onClick={this.handleForgetLink}>Forgot Password</label>
+                </div>
           </div>
           <div>
           <Button  variant="contained" > Login </Button>
@@ -38,7 +50,7 @@ export default class Login extends Component{
               <label>Dont have an account with us?</label>
           </div>
           <div>
-          <Button  variant="contained"> SignUP </Button>
+          <Button variant="contained" onClick={this.handleSignUP}> SignUP </Button>
           </div>
             </Card>
             </div>
