@@ -10,35 +10,43 @@ export default class ForgetPassword extends Component {
         super(props);
         this.state = {
             Email: '',
+            EmailError: '',
         }
     }
 
     emailsHandler = (event) => {
         this.setState({
-          Email: event.target.value
-      })
-      console.log("email",this.state.Email)
+            Email: event.target.value,
+            EmailError: ''
+        })
+        console.log("email", this.state.Email)
     };
 
-    forgetHandler=()=>{
-        console.log("dhiraj");
-       let email=this.state.Email;
-     
-      forgot(email).then((responce)=>{
-      if(responce.data.status === true){
-                  console.log("forgot password successful!")
-                  this.props.history.push("\login")
+    forgetHandler = () => {
+        if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
+            this.setState({
+                EmailError: "Email is not valid"
+            })
+        }
+        
+        if (this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
+            let email = this.state.Email;
+            forgot(email).then((responce) => {
+                if (responce.data.status === true) {
+                    console.log("forgot password successful!")
+                    this.props.history.push("\login")
                 }
-        console.log("responce data==>",responce);
-      }).catch((err)=>{
-        console.log(err);
-      })
-      }
+                console.log("responce data==>", responce);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+    }
+
 
     handleBackButton = () => {
         this.props.history.push('/login');
     }
-    
     render() {
         return (
             <div className="Forget">
@@ -55,10 +63,10 @@ export default class ForgetPassword extends Component {
                         <div className="red">o</div>
                     </div>
                     <div>
-                        <TextField id="emailForget" label="Email Id" variant="outlined" onChange={this.emailsHandler} value={this.state.email}  />
+                        <TextField id="emailForget" label="Email Id" variant="outlined" onChange={this.emailsHandler} value={this.state.email} error={this.state.EmailError} helperText={this.state.EmailError} />
                     </div>
                     <div>
-                        <Button id="submit" variant="contained"onClick={this.forgetHandler} > Submit </Button>
+                        <Button id="submit" variant="contained" onClick={this.forgetHandler} > Submit </Button>
                     </div>
                 </Card>
             </div>
