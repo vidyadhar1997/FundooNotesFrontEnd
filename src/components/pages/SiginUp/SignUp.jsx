@@ -10,61 +10,116 @@ export default class SignUP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      FirstName:'',
-      LastName:'',
-      Email:'',
-      Password:''
-  }
+      FirstName: '',
+      LastName: '',
+      Email: '',
+      Password: '',
+      ConfirmPassword: '',
+      FirstNameError: '',
+      LastNameError: '',
+      EmailError: '',
+      PasswordError: '',
+      ConfirmPasswordError: '',
+      MatchingPasswordError: ''
+    }
   }
 
   firstNameHandler = (event) => {
     this.setState({
-      FirstName: event.target.value
-  })
-  console.log("first name",this.state.FirstName)
-};
-
-lastNameHandler = (event) => {
-  this.setState({
-    LastName: event.target.value
-})
-console.log("last name",this.state.LastName)
-};
-
-emailHandlers = (event) => {
-  this.setState({
-    Email: event.target.value
-})
-console.log("email",this.state.Email)
-};
-
-passwordHandlers = (event) => {
-this.setState({
-  Password: event.target.value
-})
-console.log("password",this.state.Password)
-};
-
-handleSignUp = () => {
-    console.log("dhirajs");
-    const signUpData={
-      firstName:this.state.FirstName,
-      lastName:this.state.LastName,
-      email:this.state.Email,
-      password:this.state.Password
-    }
-    
-    signUp(signUpData).then((responce)=>{
-    if(responce.data.status === true){
-      console.log("Registration successful!")
-        this.props.history.push("\login")
-    }
-      console.log("responce data==>",responce);
-    }).catch((err)=>{
-      console.log(err);
+      FirstName: event.target.value,
+      FirstNameError: ''
     })
-  }
+    console.log("first name", this.state.FirstName)
+  };
 
+  lastNameHandler = (event) => {
+    this.setState({
+      LastName: event.target.value,
+      LastNameError: ''
+    })
+    console.log("last name", this.state.LastName)
+  };
+
+  emailHandlers = (event) => {
+    this.setState({
+      Email: event.target.value,
+      EmailError: ''
+    })
+    console.log("email", this.state.Email)
+  };
+
+  passwordHandlers = (event) => {
+    this.setState({
+      Password: event.target.value,
+      PasswordError: '',
+      MatchingPasswordError: ''
+    })
+    console.log("password", this.state.Password)
+  };
+
+  confirmPasswordHandlers = (event) => {
+    this.setState({
+      ConfirmPassword: event.target.value,
+      ConfirmPasswordError: '',
+      MatchingPasswordError: ''
+    })
+    console.log("confiem password", this.state.ConfirmPassword)
+  };
+
+  handleSignUp = () => {
+    if (!this.state.FirstName.match("^[A-Z]{1}[a-z]{2,}$")) {
+      this.setState({
+        FirstNameError: "First Name is not valid"
+      })
+    }
+
+    if (!this.state.LastName.match("[A-Z]{1}[a-z]{2,}$")) {
+      this.setState({
+        LastNameError: "Last Name is not valid"
+      })
+    }
+
+    if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
+      this.setState({
+        EmailError: "Email is not valid"
+      })
+    }
+    if (!this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}")) {
+      this.setState({
+        PasswordError: "Password is not valid"
+      })
+    }
+    if (!this.state.ConfirmPassword.match("[A-Za-z0-9!@#$%^&*()_]{6,20}")) {
+      this.setState({
+        ConfirmPasswordError: "Confirm Password is not valid"
+      })
+    }
+    if (this.state.ConfirmPassword != this.state.Password) {
+      this.setState({
+        MatchingPasswordError: "Password and confirm password not same"
+      })
+    }
+    if ((this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) &&
+      (this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}")) && (this.state.FirstName.match("^[A-Z]{1}[a-z]{2,}$"))
+      && (this.state.LastName.match("[A-Z]{1}[a-z]{2,}$")) && (this.state.ConfirmPassword.match("[A-Za-z0-9!@#$%^&*()_]{6,20}")) && (this.state.ConfirmPassword === this.state.Password)) {
+      const signUpData = {
+        firstName: this.state.FirstName,
+        lastName: this.state.LastName,
+        email: this.state.Email,
+        password: this.state.Password
+      }
+
+      signUp(signUpData).then((responce) => {
+        if (responce.data.status === true) {
+          console.log("Registration successful!")
+          this.props.history.push("\login")
+        }
+        console.log("responce data==>", responce);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+  }
   handleLogin = () => {
     this.props.history.push("\login")
   }
@@ -82,14 +137,14 @@ handleSignUp = () => {
             <div className="red">o</div>
           </div>
           <div class="name">
-            <TextField id="MuiOutlinedInput-input" label="First Name" variant="outlined" onChange={this.firstNameHandler} value={this.state.firstName} />
-            <TextField id="MuiOutlinedInput-input" label="Last Name" variant="outlined" onChange={this.lastNameHandler} value={this.state.lastName}/>
+            <TextField id="MuiOutlinedInput-input" label="First Name" variant="outlined" onChange={this.firstNameHandler} value={this.state.firstName} error={this.state.FirstNameError} helperText={this.state.FirstNameError} />
+            <TextField id="MuiOutlinedInput-input" label="Last Name" variant="outlined" onChange={this.lastNameHandler} value={this.state.lastName} error={this.state.LastNameError} helperText={this.state.LastNameError} />
           </div>
           <div >
-            <TextField id="emailTexts" label="Email Id" variant="outlined" onChange={this.emailHandlers} value={this.state.email} />
+            <TextField id="emailTexts" label="Email Id" variant="outlined" onChange={this.emailHandlers} value={this.state.email} error={this.state.EmailError} helperText={this.state.EmailError} />
           </div>
           <div>
-            <TextField id="passwordTexts" label="Password" variant="outlined" onChange={this.passwordHandlers} value={this.state.password} {...this.props}
+            <TextField id="passwordTexts" label="Password" variant="outlined" onChange={this.passwordHandlers} value={this.state.password} error={((this.state.PasswordError) || (this.state.MatchingPasswordError))} helperText={((this.state.PasswordError) || (this.state.MatchingPasswordError))} {...this.props}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -100,7 +155,7 @@ handleSignUp = () => {
             />
           </div>
           <div>
-            <TextField id="confirmPasswordText" label="Confirm Password" variant="outlined" {...this.props}
+            <TextField id="confirmPasswordText" label="Confirm Password" variant="outlined" onChange={this.confirmPasswordHandlers} value={this.state.confirmPassword} error={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))} helperText={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))} {...this.props}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
