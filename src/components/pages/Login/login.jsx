@@ -3,8 +3,8 @@ import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import './Login.css';
-import empService from "../../../services/userServices"
-let service = new empService()
+import { login } from '../../../services/userServices';
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -35,26 +35,25 @@ const loginData={
   email:this.state.Email,
   password:this.state.Password
 }
-service.login(loginData).then((responce)=>{
 
-          if(responce.data.status === true){
+login(loginData).then((responce)=>{
+if(responce.data.status === true){
             console.log("login successful!")
-            window.localStorage.setItem('token',responce.data.token)
           }
   console.log("responce data==>",responce);
 }).catch((err)=>{
   console.log(err);
-  
 })
-// let response=service.login(loginData)
-//   console.log("login = ",response);
- }
+}
+
   handleSignUP = () => {
     this.props.history.push('/signup');
   }
+
   handleForgetLink = () => {
     this.props.history.push('/forget');
   }
+
   render() {
     return (
       <div className="HomeContainer">

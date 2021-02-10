@@ -1,14 +1,23 @@
 import axios from "axios";
 import userApiConstant from "../apiConstants/userApiConstant";
-export default class Service {
 
-    login(loginData){
-    try{
-      const response = axios.post("https://localhost:44337/api/User/loginEmployee",loginData);
+export function login(loginData) {
+    try {
+      const response = axios.post("https://localhost:44337/api/User/loginEmployee", loginData)
+      // const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.login,loginData);
       return response;
     }
-    catch(error){
-        return error;
+    catch (error) {
+      return error;
     }
-}
-}
+  }
+
+  export function signUp(signUpData) {
+    try {
+      const response = axios.post("https://localhost:44337/api/User/registerEmployee", signUpData)
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
