@@ -10,27 +10,42 @@ export default class Login extends Component {
     super(props);
     this.state = {
       Email: '',
-      Password:''
+      Password:'',
+      EmailError:'',
+      PasswordError:''
   }
   }
 
   emailHandler = (event) => {
     this.setState({
-      Email: event.target.value
+      Email: event.target.value,
+      EmailError:''
   })
   console.log("email",this.state.Email)
-};
+}
 
 passwordHandler = (event) => {
   this.setState({
-    Password: event.target.value
-})
-
-console.log("password",this.state.Password)
-};
+        Password: event.target.value,
+        PasswordError:''
+    })
+    console.log("password",this.state.Password)
+}
 
 Login=()=>{
-  console.log("dhiraj");
+  if(!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$"))
+   {
+    this.setState({
+    EmailError:"Email is not valid"
+  })
+}
+  if(!this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}"))
+  {
+    this.setState({
+      PasswordError:"Password is not valid"
+  })
+}
+  if((this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$"))&&(this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}"))){
 const loginData={
   email:this.state.Email,
   password:this.state.Password
@@ -44,6 +59,7 @@ if(responce.data.status === true){
 }).catch((err)=>{
   console.log(err);
 })
+}
 }
 
   handleSignUP = () => {
@@ -67,10 +83,10 @@ if(responce.data.status === true){
             <div className="red">o</div>
           </div>
           <div >
-            <TextField id="emailText" label="Email Id" variant="outlined" onChange={this.emailHandler} value={this.state.email} />
+            <TextField id="emailText" label="Email Id" variant="outlined" onChange={this.emailHandler} value={this.state.email} error={this.state.EmailError} helperText={this.state.EmailError} />
           </div>
           <div>
-            <TextField id="passwordText" label="Password" variant="outlined" onChange={this.passwordHandler} value={this.state.password} {...this.props}
+            <TextField id="passwordText" label="Password" variant="outlined" onChange={this.passwordHandler} value={this.state.password} error={this.state.PasswordError} helperText={this.state.PasswordError} {...this.props}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
