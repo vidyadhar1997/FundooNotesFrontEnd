@@ -39,10 +39,8 @@ export default class Login extends Component {
     if (reason === 'clickaway') {
       return;
     }
-
-    this.setOpen(false);
   };
-  
+
   Login = () => {
     if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
       this.setState({

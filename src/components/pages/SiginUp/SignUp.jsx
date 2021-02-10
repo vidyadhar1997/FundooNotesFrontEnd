@@ -75,7 +75,6 @@ export default class SignUP extends Component {
     if (reason === 'clickaway') {
       return;
     }
-    this.setOpen(false);
   };
   
   handleSignUp = () => {
@@ -135,12 +134,11 @@ export default class SignUP extends Component {
         }
         console.log("responce data==>", responce);
       }).catch(async(err) => {
-        console.log("error is =",err.responce.data.error);
-       
-         this.setState({
+        // console.log("error is =",err.responce.data.error);
+          this.setState({
           snackbarOpen: true,
           snackbarMessage: "Registration UnSuccessful",
-          snackServicity: 'err'
+          snackServicity: 'success'
         })
       })
     }

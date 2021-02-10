@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import './ResetPassword.css';
 import { reset } from '../../../services/userServices';
@@ -16,7 +17,10 @@ export default class ResetPassword extends Component {
       EmailError: '',
       PasswordError: '',
       ConfirmPasswordError: '',
-      MatchingPasswordError: ''
+      MatchingPasswordError: '',
+      snackbarOpen: false,
+      snackServicity: 'success',
+      snackbarMessage: ''
     }
   }
 
@@ -42,6 +46,12 @@ export default class ResetPassword extends Component {
       ConfirmPasswordError: ''
     })
     console.log("password", this.state.ConfirmPassword)
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
   };
 
   handleReset = () => {
@@ -76,13 +86,24 @@ export default class ResetPassword extends Component {
       }
 
       reset(resetData).then((responce) => {
-        if (responce.data.status === true) {
-          console.log("Reset Password successful!")
-          this.props.history.push("\login")
+        if (responce.status === 200) {
+          this.setState({
+            snackbarOpen: true,
+            snackbarMessage: "Reset Password Successful",
+            snackServicity: 'success'
+          })
+          setTimeout (()=>{
+            this.props.history.push("\login")
+         },5000)
         }
         console.log("responce data==>", responce);
       }).catch((err) => {
-        console.log(err);
+        console.log("error is =",err.responce.data.error);
+        this.setState({
+         snackbarOpen: true,
+         snackbarMessage: "Reset Password UnSuccessful",
+         snackServicity: 'err'
+       })
       })
     }
   }
@@ -90,6 +111,11 @@ export default class ResetPassword extends Component {
     return (
       <div className="Reset">
         <Card className="cardContainerReset">
+        <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+            <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
+              {this.state.snackbarMessage}
+            </Alert>
+          </Snackbar>
           <div className="fundooContainer">
             <div className="blue">F</div>
             <div className="red">u</div>
