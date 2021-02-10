@@ -21,3 +21,16 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function forgot(forgotPasswordData) {
+    try {
+      const response = axios.post("https://localhost:44337/api​/User​/forgotPassword", forgotPasswordData)
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
+  
+  
+  
