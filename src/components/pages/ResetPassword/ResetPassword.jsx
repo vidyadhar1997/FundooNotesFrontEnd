@@ -7,22 +7,22 @@ import './ResetPassword.css';
 export default class ResetPassword extends Component {
   constructor(props) {
     super(props);
-}
+  }
   handleReset = () => {
-  this.props.history.push('/login');
-}
+    this.props.history.push('/login');
+  }
   render() {
     return (
       <div className="Reset">
         <Card className="cardContainerReset">
-        <div className="fundooContainer">
-              <div className="blue">F</div>
-              <div className="red">u</div>
-              <div className="yellow">n</div>
-              <div className="blue">d</div>
-              <div className="green">o</div>
-              <div className="red">o</div>
-        </div>
+          <div className="fundooContainer">
+            <div className="blue">F</div>
+            <div className="red">u</div>
+            <div className="yellow">n</div>
+            <div className="blue">d</div>
+            <div className="green">o</div>
+            <div className="red">o</div>
+          </div>
           <div >
             <TextField id="emailReset" label="Email Id" variant="outlined" />
           </div>

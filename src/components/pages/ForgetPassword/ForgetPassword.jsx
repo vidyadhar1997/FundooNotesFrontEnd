@@ -9,7 +9,7 @@ export default class ForgetPassword extends Component {
         super(props);
     }
     handleBackButton = () => {
-      this.props.history.push('/login');
+        this.props.history.push('/login');
     }
     render() {
         return (
@@ -18,14 +18,14 @@ export default class ForgetPassword extends Component {
                     <div className="arrow" onClick={this.handleBackButton}>
                         <ArrowBackIcon></ArrowBackIcon>
                     </div>
-                <div className="fundooContainer">
-              <div className="blue">F</div>
-              <div className="red">u</div>
-              <div className="yellow">n</div>
-              <div className="blue">d</div>
-              <div className="green">o</div>
-              <div className="red">o</div>
-             </div>
+                    <div className="fundooContainer">
+                        <div className="blue">F</div>
+                        <div className="red">u</div>
+                        <div className="yellow">n</div>
+                        <div className="blue">d</div>
+                        <div className="green">o</div>
+                        <div className="red">o</div>
+                    </div>
                     <div>
                         <TextField id="emailForget" label="Email Id" variant="outlined" />
                     </div>

@@ -6,27 +6,27 @@ import './SignUp.css'
 import { Link } from 'react-router-dom';
 
 export default class SignUP extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
-  handleButton=()=>(
+  handleButton = () => (
     this.props.history.push("\login")
   )
-  handleLogin=()=>{
+  handleLogin = () => {
     this.props.history.push("\login")
   }
   render() {
     return (
       <div className="HomeContainers">
         <Card className="cardContainers">
-        <div className="fundooContainer">
-              <div className="blue">F</div>
-              <div className="red">u</div>
-              <div className="yellow">n</div>
-              <div className="blue">d</div>
-              <div className="green">o</div>
-              <div className="red">o</div>
-        </div>
+          <div className="fundooContainer">
+            <div className="blue">F</div>
+            <div className="red">u</div>
+            <div className="yellow">n</div>
+            <div className="blue">d</div>
+            <div className="green">o</div>
+            <div className="red">o</div>
+          </div>
           <div class="name">
             <TextField id="MuiOutlinedInput-input" label="First Name" variant="outlined" />
             <TextField id="MuiOutlinedInput-input" label="Last Name" variant="outlined" />
@@ -59,7 +59,7 @@ export default class SignUP extends Component {
 
           <div className="labless">
             <Button id="sign" variant="contained" onClick={this.handleButton} > SignUP </Button>
-            <label htmlFor="ask" id="askForLogin">Have an account with us ? 
+            <label htmlFor="ask" id="askForLogin">Have an account with us ?
             <Link onClick={this.handleLogin}>Login</Link></label>
           </div>
         </Card>
