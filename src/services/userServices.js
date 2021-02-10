@@ -22,9 +22,9 @@ export function login(loginData) {
     }
   }
 
-  export function forgot(forgotPasswordData) {
+  export function forgot(email) {
     try {
-      const response = axios.post("https://localhost:44337/api​/User​/forgotPassword", forgotPasswordData)
+      const response = axios.post("https://localhost:44337/api/User/forgetPassword?emailAddress="+email)
       return response;
     }
     catch (error) {
