@@ -32,5 +32,15 @@ export function login(loginData) {
     }
   }
   
+  export function reset(resetData) {
+    try {
+      const response = axios.put("https://localhost:44337/api/User/resetPassword",resetData)
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
+  
   
   
