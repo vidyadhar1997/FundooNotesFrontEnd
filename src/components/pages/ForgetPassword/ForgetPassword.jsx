@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import './ForgetPassword.css';
 import { forgot } from '../../../services/userServices';
 
@@ -11,6 +13,9 @@ export default class ForgetPassword extends Component {
         this.state = {
             Email: '',
             EmailError: '',
+            snackbarOpen: false,
+            snackServicity: 'success',
+            snackbarMessage: ''
         }
     }
 
@@ -22,23 +27,39 @@ export default class ForgetPassword extends Component {
         console.log("email", this.state.Email)
     };
 
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+      };
+
     forgetHandler = () => {
         if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
             this.setState({
                 EmailError: "Email is not valid"
             })
         }
-        
+
         if (this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
             let email = this.state.Email;
             forgot(email).then((responce) => {
-                if (responce.data.status === true) {
-                    console.log("forgot password successful!")
-                    this.props.history.push("\login")
+                if (responce.status === 200) {
+                    this.setState({
+                        snackbarOpen: true,
+                        snackbarMessage: "Reset Password Link Sent Successful",
+                        snackServicity: 'success'
+                      })
+                      setTimeout (()=>{
+                        this.props.history.push("\login")
+                     },5000)
                 }
                 console.log("responce data==>", responce);
             }).catch((err) => {
-                console.log(err);
+          this.setState({
+            snackbarOpen: true,
+            snackbarMessage: "Forget Password Is UnSuccessful:Email Is Not Valid",
+            snackServicity: 'success'
+          })
             })
         }
     }
@@ -51,6 +72,11 @@ export default class ForgetPassword extends Component {
         return (
             <div className="Forget">
                 <Card className="cardsContainerForget">
+                <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+            <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
+              {this.state.snackbarMessage}
+            </Alert>
+          </Snackbar>
                     <div className="arrow" onClick={this.handleBackButton}>
                         <ArrowBackIcon></ArrowBackIcon>
                     </div>

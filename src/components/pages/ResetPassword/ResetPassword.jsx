@@ -98,11 +98,11 @@ export default class ResetPassword extends Component {
         }
         console.log("responce data==>", responce);
       }).catch((err) => {
-        console.log("error is =",err.responce.data.error);
+        // console.log("error is =",err.responce.data.error);
         this.setState({
          snackbarOpen: true,
          snackbarMessage: "Reset Password UnSuccessful",
-         snackServicity: 'err'
+         snackServicity: 'success'
        })
       })
     }
