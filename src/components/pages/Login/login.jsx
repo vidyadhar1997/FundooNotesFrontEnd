@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import './Login.css';
 import { login } from '../../../services/userServices';
@@ -12,7 +14,10 @@ export default class Login extends Component {
       Email: '',
       Password:'',
       EmailError:'',
-      PasswordError:''
+      PasswordError:'',
+      snackbarOpen:false,
+      snackServicity:'success',
+      snackbarMessage:''
   }
   }
 
@@ -23,7 +28,13 @@ export default class Login extends Component {
   })
   console.log("email",this.state.Email)
 }
+ handleClose = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
 
+  this.setOpen(false);
+};
 passwordHandler = (event) => {
   this.setState({
         Password: event.target.value,
@@ -52,12 +63,20 @@ const loginData={
 }
 
 login(loginData).then((responce)=>{
-if(responce.data.status === true){
-            console.log("login successful!")
-          }
+if(responce.status === 200){
+  this.setState({
+    snackbarOpen:true,
+    snackbarMessage:"Login Successful",
+    snackServicity:'success'
+  })
+}
   console.log("responce data==>",responce);
 }).catch((err)=>{
-  console.log(err);
+  this.setState({
+    snackbarOpen:true,
+    snackbarMessage:"Login is UnSuccessful :Invalid Email Or Password",
+    snackServicity:'success'
+  })
 })
 }
 }
@@ -69,11 +88,15 @@ if(responce.data.status === true){
   handleForgetLink = () => {
     this.props.history.push('/forget');
   }
-
   render() {
     return (
       <div className="HomeContainer">
         <Card className="cardContainer">
+        <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+        <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
+          {this.state.snackbarMessage}
+        </Alert>
+      </Snackbar>
           <div className="fundooContainer">
             <div className="blue">F</div>
             <div className="red">u</div>
