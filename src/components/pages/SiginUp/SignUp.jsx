@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import './SignUp.css'
 import { Link } from 'react-router-dom';
 import { signUp } from '../../../services/userServices';
@@ -20,7 +22,10 @@ export default class SignUP extends Component {
       EmailError: '',
       PasswordError: '',
       ConfirmPasswordError: '',
-      MatchingPasswordError: ''
+      MatchingPasswordError: '',
+      snackbarOpen: false,
+      snackServicity: 'success',
+      snackbarMessage: ''
     }
   }
 
@@ -66,6 +71,13 @@ export default class SignUP extends Component {
     console.log("confiem password", this.state.ConfirmPassword)
   };
 
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setOpen(false);
+  };
+  
   handleSignUp = () => {
     if (!this.state.FirstName.match("^[A-Z]{1}[a-z]{2,}$")) {
       this.setState({
@@ -110,13 +122,26 @@ export default class SignUP extends Component {
       }
 
       signUp(signUpData).then((responce) => {
-        if (responce.data.status === true) {
-          console.log("Registration successful!")
-          this.props.history.push("\login")
+        if (responce.status === 200) {
+          this.setState({
+            snackbarOpen: true,
+            snackbarMessage: "Registration Successful",
+            snackServicity: 'success'
+          })
+        
+          setTimeout (()=>{
+            this.props.history.push("\login")
+         },5000)
         }
         console.log("responce data==>", responce);
-      }).catch((err) => {
-        console.log(err);
+      }).catch(async(err) => {
+        console.log("error is =",err.responce.data.error);
+       
+         this.setState({
+          snackbarOpen: true,
+          snackbarMessage: "Registration UnSuccessful",
+          snackServicity: 'err'
+        })
       })
     }
   }
@@ -128,6 +153,11 @@ export default class SignUP extends Component {
     return (
       <div className="HomeContainers">
         <Card className="cardContainers">
+        <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+            <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
+              {this.state.snackbarMessage}
+            </Alert>
+          </Snackbar>
           <div className="fundooContainer">
             <div className="blue">F</div>
             <div className="red">u</div>

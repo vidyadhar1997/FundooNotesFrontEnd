@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import './ResetPassword.css';
 import { reset } from '../../../services/userServices';

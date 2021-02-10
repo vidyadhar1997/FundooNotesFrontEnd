@@ -12,74 +12,72 @@ export default class Login extends Component {
     super(props);
     this.state = {
       Email: '',
-      Password:'',
-      EmailError:'',
-      PasswordError:'',
-      snackbarOpen:false,
-      snackServicity:'success',
-      snackbarMessage:''
-  }
+      Password: '',
+      EmailError: '',
+      PasswordError: '',
+      snackbarOpen: false,
+      snackServicity: 'success',
+      snackbarMessage: ''
+    }
   }
 
   emailHandler = (event) => {
     this.setState({
       Email: event.target.value,
-      EmailError:''
-  })
-  console.log("email",this.state.Email)
-}
- handleClose = (event, reason) => {
-  if (reason === 'clickaway') {
-    return;
-  }
-
-  this.setOpen(false);
-};
-passwordHandler = (event) => {
-  this.setState({
-        Password: event.target.value,
-        PasswordError:''
+      EmailError: ''
     })
-    console.log("password",this.state.Password)
-}
-
-Login=()=>{
-  if(!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$"))
-   {
+    console.log("email", this.state.Email)
+  }
+  passwordHandler = (event) => {
     this.setState({
-    EmailError:"Email is not valid"
-  })
-}
-  if(!this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}"))
-  {
-    this.setState({
-      PasswordError:"Password is not valid"
-  })
-}
-  if((this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$"))&&(this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}"))){
-const loginData={
-  email:this.state.Email,
-  password:this.state.Password
-}
+      Password: event.target.value,
+      PasswordError: ''
+    })
+    console.log("password", this.state.Password)
+  }
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
-login(loginData).then((responce)=>{
-if(responce.status === 200){
-  this.setState({
-    snackbarOpen:true,
-    snackbarMessage:"Login Successful",
-    snackServicity:'success'
-  })
-}
-  console.log("responce data==>",responce);
-}).catch((err)=>{
-  this.setState({
-    snackbarOpen:true,
-    snackbarMessage:"Login is UnSuccessful :Invalid Email Or Password",
-    snackServicity:'success'
-  })
-})
-}
-}
+    this.setOpen(false);
+  };
+  
+  Login = () => {
+    if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
+      this.setState({
+        EmailError: "Email is not valid"
+      })
+    }
+    if (!this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}")) {
+      this.setState({
+        PasswordError: "Password is not valid"
+      })
+    }
+    if ((this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) && (this.state.Password.match("[A-Za-z0-9!@#$%^&*()_]{6,20}"))) {
+      const loginData = {
+        email: this.state.Email,
+        password: this.state.Password
+      }
+
+      login(loginData).then((responce) => {
+        if (responce.status === 200) {
+          this.setState({
+            snackbarOpen: true,
+            snackbarMessage: "Login Successful",
+            snackServicity: 'success'
+          })
+        }
+        console.log("responce data==>", responce);
+      }).catch((err) => {
+        this.setState({
+          snackbarOpen: true,
+          snackbarMessage: "Login is UnSuccessful :Invalid Email Or Password",
+          snackServicity: 'success'
+        })
+      })
+    }
+  }
 
   handleSignUP = () => {
     this.props.history.push('/signup');
@@ -92,11 +90,11 @@ if(responce.status === 200){
     return (
       <div className="HomeContainer">
         <Card className="cardContainer">
-        <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
-        <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
-          {this.state.snackbarMessage}
-        </Alert>
-      </Snackbar>
+          <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+            <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
+              {this.state.snackbarMessage}
+            </Alert>
+          </Snackbar>
           <div className="fundooContainer">
             <div className="blue">F</div>
             <div className="red">u</div>
