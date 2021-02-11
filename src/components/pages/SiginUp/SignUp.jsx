@@ -150,7 +150,7 @@ export default class SignUP extends Component {
         console.log("error is =",error);
         this.setState({
           snackbarOpen: true,
-          snackbarMessage: responce.data.message,
+          snackbarMessage: "Registration Unsccessfully",
           snackServicity: 'error'
         })
       })

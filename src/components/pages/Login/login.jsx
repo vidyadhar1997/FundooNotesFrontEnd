@@ -73,13 +73,16 @@ export default class Login extends Component {
             snackbarMessage: responce.data.message,
             snackServicity: 'success'
           })
+          setTimeout(() => {
+            this.props.history.push("\dashbord")
+        }, 4000)
         }
         console.log("responce data==>", responce);
       }).catch((error) => {
         console.log("error is =",error.message);
         this.setState({
           snackbarOpen: true,
-          snackbarMessage: error.message,
+          snackbarMessage: "Login Unsucessfull",
           snackServicity: 'error'
         })
       })

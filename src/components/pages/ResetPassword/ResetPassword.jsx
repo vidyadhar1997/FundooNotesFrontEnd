@@ -112,7 +112,7 @@ handleReset = () => {
       console.log("error is =", error);
       this.setState({
         snackbarOpen: true,
-        snackbarMessage: responce.data.message,
+        snackbarMessage:"Reset Password Unsuccessfull",
         snackServicity: 'error'
       })
     })

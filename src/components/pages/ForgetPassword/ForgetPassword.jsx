@@ -58,7 +58,7 @@ export default class ForgetPassword extends Component {
                 console.log("error is =",error);
                 this.setState({
                     snackbarOpen: true,
-                    snackbarMessage: responce.message,
+                    snackbarMessage: "Forgot Password Unsuccessfull",
                     snackServicity: 'error'
                 })
             })
