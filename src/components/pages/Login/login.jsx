@@ -37,10 +37,11 @@ export default class Login extends Component {
     })
     console.log("password", this.state.Password)
   }
+
   handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
+    this.setState({
+      snackbarOpen:false
+    })
   };
 
   visbleIconHandler = (event) => {
@@ -75,10 +76,10 @@ export default class Login extends Component {
         }
         console.log("responce data==>", responce);
       }).catch((error) => {
-        console.log("error is =",error.message.responce.message);
+        console.log("error is =",error.message);
         this.setState({
           snackbarOpen: true,
-          snackbarMessage: error.message.responce.message,
+          snackbarMessage: error.message,
           snackServicity: 'error'
         })
       })

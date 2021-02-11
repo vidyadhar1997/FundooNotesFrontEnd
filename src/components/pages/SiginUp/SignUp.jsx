@@ -75,9 +75,9 @@ export default class SignUP extends Component {
   };
 
   handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
+    this.setState({
+      snackbarOpen:false
+    })
   };
 
   visbleIconHandler = (event) => {
