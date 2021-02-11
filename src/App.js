@@ -4,7 +4,7 @@ import Login from './components/pages/Login/login';
 import ResetPassword from './components/pages/ResetPassword/ResetPassword';
 import SignUP from './components/pages/SiginUp/SignUp';
 import ForgetPassword from './components/pages/ForgetPassword/ForgetPassword';
-import DashBord from './components/pages/DashBord/DashBord';
+import Dashbord from './components/pages/DashBord/DashBord';
 function App(){
     return(
         <div>
@@ -14,7 +14,7 @@ function App(){
                     <Route path='/signup'  component={SignUP}/>
                     <Route path='/forget'  component={ForgetPassword}/>
                     <Route path='/reset'  component={ResetPassword}/>
-                    <Route path='/dashbord'  component={DashBord}/>
+                    <Route path='/dashbord'  component={Dashbord}/>
                 </Switch>
             </Router>
         </div>
