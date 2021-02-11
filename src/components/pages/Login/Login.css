@@ -46,10 +46,12 @@ display: flex;
 
 #emailText{
 width: 27em;
+height: 10px;
 }
 
 #passwordText{
     width: 25em;
+    font-size-adjust: 0.58;
 }
 
 .link{
