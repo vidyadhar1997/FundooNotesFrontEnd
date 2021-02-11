@@ -29,9 +29,9 @@ export default class ForgetPassword extends Component {
 
     handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
-      };
+    };
 
     forgetHandler = () => {
         if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
@@ -46,20 +46,21 @@ export default class ForgetPassword extends Component {
                 if (responce.status === 200) {
                     this.setState({
                         snackbarOpen: true,
-                        snackbarMessage: "Reset Password Link Sent Successful",
+                        snackbarMessage: responce.data.message,
                         snackServicity: 'success'
-                      })
-                      setTimeout (()=>{
+                    })
+                    setTimeout(() => {
                         this.props.history.push("\login")
-                     },5000)
+                    }, 4000)
                 }
                 console.log("responce data==>", responce);
-            }).catch((err) => {
-          this.setState({
-            snackbarOpen: true,
-            snackbarMessage: "Forget Password Is UnSuccessful:Email Is Not Valid",
-            snackServicity: 'success'
-          })
+            }).catch((error) => {
+                console.log("error is =",error);
+                this.setState({
+                    snackbarOpen: true,
+                    snackbarMessage: responce.message,
+                    snackServicity: 'error'
+                })
             })
         }
     }
@@ -72,11 +73,11 @@ export default class ForgetPassword extends Component {
         return (
             <div className="Forget">
                 <Card className="cardsContainerForget">
-                <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
-            <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
-              {this.state.snackbarMessage}
-            </Alert>
-          </Snackbar>
+                    <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+                        <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
+                            {this.state.snackbarMessage}
+                        </Alert>
+                    </Snackbar>
                     <div className="arrow" onClick={this.handleBackButton}>
                         <ArrowBackIcon></ArrowBackIcon>
                     </div>

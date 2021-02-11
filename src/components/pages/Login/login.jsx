@@ -17,7 +17,8 @@ export default class Login extends Component {
       PasswordError: '',
       snackbarOpen: false,
       snackServicity: 'success',
-      snackbarMessage: ''
+      snackbarMessage: '',
+      visability:false
     }
   }
 
@@ -62,16 +63,17 @@ export default class Login extends Component {
         if (responce.status === 200) {
           this.setState({
             snackbarOpen: true,
-            snackbarMessage: "Login Successful",
+            snackbarMessage: responce.data.message,
             snackServicity: 'success'
           })
         }
         console.log("responce data==>", responce);
-      }).catch((err) => {
+      }).catch((error) => {
+        console.log("error is =",error.message.responce.message);
         this.setState({
           snackbarOpen: true,
-          snackbarMessage: "Login is UnSuccessful :Invalid Email Or Password",
-          snackServicity: 'success'
+          snackbarMessage: error.message.responce.message,
+          snackServicity: 'error'
         })
       })
     }

@@ -76,7 +76,7 @@ export default class SignUP extends Component {
       return;
     }
   };
-  
+
   handleSignUp = () => {
     if (!this.state.FirstName.match("^[A-Z]{1}[a-z]{2,}$")) {
       this.setState({
@@ -124,21 +124,21 @@ export default class SignUP extends Component {
         if (responce.status === 200) {
           this.setState({
             snackbarOpen: true,
-            snackbarMessage: "Registration Successful",
+            snackbarMessage: responce.data.message,
             snackServicity: 'success'
           })
-        
-          setTimeout (()=>{
+
+          setTimeout(() => {
             this.props.history.push("\login")
-         },5000)
+          }, 4000)
         }
         console.log("responce data==>", responce);
-      }).catch(async(err) => {
-        // console.log("error is =",err.responce.data.error);
-          this.setState({
+      }).catch((error) => {
+        console.log("error is =",error);
+        this.setState({
           snackbarOpen: true,
-          snackbarMessage: "Registration UnSuccessful",
-          snackServicity: 'success'
+          snackbarMessage: responce.data.message,
+          snackServicity: 'error'
         })
       })
     }
@@ -151,7 +151,7 @@ export default class SignUP extends Component {
     return (
       <div className="HomeContainers">
         <Card className="cardContainers">
-        <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
+          <Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.handleClose}>
             <Alert onClose={this.handleClose} severity={this.state.snackServicity}>
               {this.state.snackbarMessage}
             </Alert>
