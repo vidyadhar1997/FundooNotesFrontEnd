@@ -4,6 +4,7 @@ import { TextField, Button, InputAdornment } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import './Login.css';
 import { login } from '../../../services/userServices';
 
@@ -18,7 +19,7 @@ export default class Login extends Component {
       snackbarOpen: false,
       snackServicity: 'success',
       snackbarMessage: '',
-      visability:false
+      visability: false,
     }
   }
 
@@ -41,6 +42,11 @@ export default class Login extends Component {
       return;
     }
   };
+
+  visbleIconHandler = (event) => {
+    this.state.visability ? this.setState({ visability: false })
+      : this.setState({ visability: true })
+  }
 
   Login = () => {
     if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
@@ -107,12 +113,17 @@ export default class Login extends Component {
             <TextField id="emailText" label="Email Id" variant="outlined" onChange={this.emailHandler} value={this.state.email} error={this.state.EmailError} helperText={this.state.EmailError} />
           </div>
           <div>
-            <TextField id="passwordText" label="Password" variant="outlined" onChange={this.passwordHandler} value={this.state.password} error={this.state.PasswordError} helperText={this.state.PasswordError} {...this.props}
+            <TextField id="passwordText" label="Password" variant="outlined" 
+            onChange={this.passwordHandler} value={this.state.password} 
+            error={this.state.PasswordError} helperText={this.state.PasswordError} 
+            type={this.state.visability ? 'text' : 'password'}{...this.props}
               InputProps={{
                 endAdornment: (
+                  <div onClick={this.visbleIconHandler}>
                   <InputAdornment position="end">
-                    <VisibilityIcon />
+                    {this.state.visability ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </InputAdornment>
+                </div>
                 ),
               }}
             />
