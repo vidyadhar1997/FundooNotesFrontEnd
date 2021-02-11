@@ -1,203 +1,151 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
+import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
+import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
+import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
+import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import '../DashBord/DashBord.scss'
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
+const drawerWidth = 250;
+const drawerTopMargin = 69;
 const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
+  root: {
+    display: 'flex',
+    marginTop: "100px",
+  },
+  appBar: {
+    width: "100%",
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: 36,
   },
-  title: {
+  hide: {
     display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    marginTop: drawerTopMargin,
+    flexShrink: 0,
+    whiteSpace: "nowrap",
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    marginTop: drawerTopMargin,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    marginTop: drawerTopMargin,
+    borderStyle: "none",
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
+      width: theme.spacing(9) + 1,
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
+  toolbar: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
   },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
   },
 }));
 
-export default function dashbord() {
+export default function MiniDrawer() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(!open);
   };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
-    <div className={classes.grow}>
-      <AppBar id="AppBar" position="static">
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        color="white"
+        className={clsx(classes.appBar)}
+      >
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Fundoo Notes
+          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
+            className={clsx(classes.menuButton)} ><MenuIcon /> </IconButton>
+          <Typography variant="h6" noWrap>
+            Fundoo
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <List>
+          <ListItem button key={'Notes'} alt="Notes">
+            <ListItemIcon  ><EmojiObjectsOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'Notes'} />
+          </ListItem>
+          <ListItem button key={'Remainders'}>
+            <ListItemIcon><NotificationsOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'Remainders'} />
+          </ListItem>
+          <ListItem button key={'Editlabels'} >
+            <ListItemIcon>< EditOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'Edit labels'} />
+          </ListItem>
+          <ListItem button key={'Archive'}>
+            <ListItemIcon ><ArchiveOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'Archive'} />
+          </ListItem>
+          <ListItem button className="trash">
+            <ListItemIcon >< DeleteOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'Trash'} />
+          </ListItem>
+        </List>
+      </Drawer>
     </div>
   );
 }
