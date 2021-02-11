@@ -163,8 +163,7 @@ render() {
             value={this.state.confirmPassword}
             error={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))}
             helperText={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))}
-            type={this.state.visability ? 'text' : 'password'}
-            {...this.props}
+            type={this.state.visability ? 'text' : 'password'}{...this.props}
             InputProps={{
               endAdornment: (
                 <div onClick={this.visbleIconHandler}>

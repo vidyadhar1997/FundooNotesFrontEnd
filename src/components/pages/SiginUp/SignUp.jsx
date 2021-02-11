@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import { TextField, Button, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import './SignUp.css'
@@ -25,7 +26,9 @@ export default class SignUP extends Component {
       MatchingPasswordError: '',
       snackbarOpen: false,
       snackServicity: 'success',
-      snackbarMessage: ''
+      snackbarMessage: '',
+      visability: false,
+      visabilityTwo: false
     }
   }
 
@@ -76,6 +79,16 @@ export default class SignUP extends Component {
       return;
     }
   };
+
+  visbleIconHandler = (event) => {
+    this.state.visability ? this.setState({ visability: false })
+      : this.setState({ visability: true })
+  }
+
+  visbleIconHandlerTwo = (event) =>{
+    this.state.visabilityTwo ? this.setState({ visabilityTwo: false })
+      : this.setState({ visabilityTwo: true })
+  }
 
   handleSignUp = () => {
     if (!this.state.FirstName.match("^[A-Z]{1}[a-z]{2,}$")) {
@@ -172,23 +185,35 @@ export default class SignUP extends Component {
             <TextField id="emailTexts" label="Email Id" variant="outlined" onChange={this.emailHandlers} value={this.state.email} error={this.state.EmailError} helperText={this.state.EmailError} />
           </div>
           <div>
-            <TextField id="passwordTexts" label="Password" variant="outlined" onChange={this.passwordHandlers} value={this.state.password} error={((this.state.PasswordError) || (this.state.MatchingPasswordError))} helperText={((this.state.PasswordError) || (this.state.MatchingPasswordError))} {...this.props}
+            <TextField id="passwordTexts" label="Password" variant="outlined" 
+            onChange={this.passwordHandlers} value={this.state.password} 
+            error={((this.state.PasswordError) || (this.state.MatchingPasswordError))}
+             helperText={((this.state.PasswordError) || (this.state.MatchingPasswordError))} 
+             type={this.state.visabilityTwo ? 'text' : 'password'}{...this.props}
               InputProps={{
                 endAdornment: (
+                  <div onClick={this.visbleIconHandlerTwo}>
                   <InputAdornment position="end">
-                    <VisibilityIcon />
+                    {this.state.visabilityTwo ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </InputAdornment>
+                </div>
                 ),
               }}
             />
           </div>
           <div>
-            <TextField id="confirmPasswordText" label="Confirm Password" variant="outlined" onChange={this.confirmPasswordHandlers} value={this.state.confirmPassword} error={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))} helperText={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))} {...this.props}
+            <TextField id="confirmPasswordText" label="Confirm Password" variant="outlined" 
+            onChange={this.confirmPasswordHandlers} value={this.state.confirmPassword} 
+            error={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))} 
+            helperText={((this.state.ConfirmPasswordError) || (this.state.MatchingPasswordError))} 
+            type={this.state.visability ? 'text' : 'password'}{...this.props}
               InputProps={{
                 endAdornment: (
+                  <div onClick={this.visbleIconHandler}>
                   <InputAdornment position="end">
-                    <VisibilityIcon />
+                    {this.state.visability ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </InputAdornment>
+                </div>
                 ),
               }}
             />
