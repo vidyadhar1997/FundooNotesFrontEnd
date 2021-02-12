@@ -79,7 +79,7 @@ export default class ForgetPassword extends Component {
                         </Alert>
                     </Snackbar>
                     <div className="arrow" onClick={this.handleBackButton}>
-                        <ArrowBackIcon></ArrowBackIcon>
+                        <ArrowBackIcon id="arrows"></ArrowBackIcon>
                     </div>
                     <div className="fundooContainer">
                         <div className="blue">F</div>

@@ -149,7 +149,7 @@ render() {
             InputProps={{
               endAdornment: (
                 <div onClick={this.visbleIconHandlerTwo}>
-                  <InputAdornment position="end">
+                  <InputAdornment position="end"  id="visibility">
                     {this.state.visabilityTwo ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </InputAdornment>
                 </div>
@@ -167,7 +167,7 @@ render() {
             InputProps={{
               endAdornment: (
                 <div onClick={this.visbleIconHandler}>
-                  <InputAdornment position="end">
+                  <InputAdornment position="end"  id="visibility">
                     {this.state.visability ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </InputAdornment>
                 </div>

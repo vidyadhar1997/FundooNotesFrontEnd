@@ -66,6 +66,10 @@
         width: 30em;
     }
 
+    .MuiTextField-root, .MuiButton-root{
+        height: 75px;    
+      }
+      
     #sign{
         background-color: coral;
         width: 15em;

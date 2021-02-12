@@ -124,15 +124,15 @@ export default class Login extends Component {
               InputProps={{
                 endAdornment: (
                   <div onClick={this.visbleIconHandler}>
-                  <InputAdornment position="end">
-                    {this.state.visability ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  <InputAdornment position="end" id="visibility" >
+                    {this.state.visability ? <VisibilityIcon/> : <VisibilityOffIcon />}
                   </InputAdornment>
                 </div>
                 ),
               }}
             />
             <div class="link">
-              <label onClick={this.handleForgetLink}>Forgot Password</label>
+              <label  id ="forgot"onClick={this.handleForgetLink}>Forgot Password</label>
             </div>
           </div>
           <div>

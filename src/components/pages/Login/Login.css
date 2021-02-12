@@ -46,13 +46,26 @@ display: flex;
 
 #emailText{
 width: 27em;
-/* height: 30px; */
+/* height: 70px;  */
 }
 
 #passwordText{
     width: 25em;
-    /* height: 30px; */
+    /* height: 70px;  */
 }
+
+.MuiTextField-root, .MuiButton-root{
+  height: 75px;    
+}
+#visibility:hover{
+    color: rgb(255, 110, 57);
+    cursor: context-menu;
+}
+
+#forgot:hover{
+    color: rgb(255, 110, 57);
+}
+
 
 .link{
     display: flex;
