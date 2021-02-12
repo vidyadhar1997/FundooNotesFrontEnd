@@ -17,6 +17,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 
 const drawerWidth = 250;
 const drawerTopMargin = 69;
@@ -108,7 +109,8 @@ export default function MiniDrawer() {
           <Typography variant="h6" noWrap>
             Fundoo
           </Typography>
-        </Toolbar>
+          <div className="Account"><IconButton ><AccountCircleOutlinedIcon/></IconButton></div>
+         </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
