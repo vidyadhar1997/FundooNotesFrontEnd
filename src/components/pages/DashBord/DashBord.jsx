@@ -18,6 +18,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import SearchIcon from "@material-ui/icons/Search";
+import { TextField } from '@material-ui/core';
+import '../DashBord/DashBord.scss';
+import FundooImage from '../../../assets/logo.png'
+
 
 const drawerWidth = 250;
 const drawerTopMargin = 69;
@@ -90,11 +95,16 @@ const useStyles = makeStyles((theme) => ({
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
+
+  //rect hook
   const [open, setOpen] = React.useState(false);
+  const [searchtextField, setsearchtextField] = React.useState(false)
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
-
+  const searchClick = () => {
+    setsearchtextField(true)
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -106,9 +116,21 @@ export default function MiniDrawer() {
         <Toolbar>
           <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
             className={clsx(classes.menuButton)} ><MenuIcon /> </IconButton>
-          <Typography variant="h6" noWrap>
-            Fundoo
+            <div>
+                <img src={FundooImage} />
+            </div>
+          <Typography id="name" variant="h6" noWrap>
+            Fundoo Note
           </Typography>
+          <div className="searchBar"onClick={searchClick}>
+              <div>
+                <IconButton><SearchIcon /></IconButton>
+              </div>
+              <div className="inputtextField">
+                <TextField placeholder="Search"
+                  InputProps={{ disableUnderline: true, }} multiline fullWidth>search</TextField>
+              </div>
+            </div>
           <div className="Account"><IconButton ><AccountCircleOutlinedIcon/></IconButton></div>
          </Toolbar>
       </AppBar>
@@ -126,7 +148,7 @@ export default function MiniDrawer() {
         }}
       >
         <List>
-          <ListItem button key={'Notes'} alt="Notes">
+          <ListItem button key={'Notes'}>
             <ListItemIcon  ><EmojiObjectsOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Notes'} />
           </ListItem>
