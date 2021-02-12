@@ -20,12 +20,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import SearchIcon from "@material-ui/icons/Search";
 import { TextField } from '@material-ui/core';
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import '../DashBord/DashBord.scss';
 import FundooImage from '../../../assets/logo.png'
+import AccountImage from '../../../assets/imageicon.png'
+import Card from '@material-ui/core/Card';
+import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
+import { Button } from '@material-ui/core';
 
 
 const drawerWidth = 250;
-const drawerTopMargin = 69;
+const drawerTopMargin = 65;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -98,13 +103,15 @@ export default function MiniDrawer() {
 
   //rect hook
   const [open, setOpen] = React.useState(false);
-  const [searchtextField, setsearchtextField] = React.useState(false)
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
-  const searchClick = () => {
-    setsearchtextField(true)
+
+  const [card, setCard] = React.useState(false);
+  const icon = () => {
+    setCard(!card);
   }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -116,23 +123,36 @@ export default function MiniDrawer() {
         <Toolbar>
           <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
             className={clsx(classes.menuButton)} ><MenuIcon /> </IconButton>
-            <div>
-                <img src={FundooImage} />
-            </div>
+          <div>
+            <img src={FundooImage} />
+          </div>
           <Typography id="name" variant="h6" noWrap>
             Fundoo Note
           </Typography>
-          <div className="searchBar"onClick={searchClick}>
-              <div>
-                <IconButton><SearchIcon /></IconButton>
-              </div>
-              <div className="inputtextField">
-                <TextField placeholder="Search"
-                  InputProps={{ disableUnderline: true, }} multiline fullWidth>search</TextField>
-              </div>
+          <div className="searchBar">
+            <div>
+              <IconButton><SearchIcon /></IconButton>
             </div>
-          <div className="Account"><IconButton ><AccountCircleOutlinedIcon/></IconButton></div>
-         </Toolbar>
+            <div className="inputtextField">
+              <TextField placeholder="Search"
+                InputProps={{ disableUnderline: true, }} multiline fullWidth>search</TextField>
+            </div>
+          </div>
+          <div className="Account"><IconButton onClick={icon}><AccountCircleOutlinedIcon fontSize="large" /></IconButton></div>
+          {card ? <Card id="card">
+            <div >
+              <img id="accountCircle" src={AccountImage} />
+            </div>
+            <div className="main-personIcon">
+              <div id="personIcon">
+                <PersonAddOutlinedIcon /> Add another account
+          </div>
+            </div>
+            <div id="button">
+              <Button variant="outlined" id="button">sigin out</Button>
+            </div>
+          </Card> : undefined}
+        </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
@@ -155,6 +175,10 @@ export default function MiniDrawer() {
           <ListItem button key={'Remainders'}>
             <ListItemIcon><NotificationsOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Remainders'} />
+          </ListItem>
+          <ListItem button key={'Lable'}>
+            <ListItemIcon>< LabelOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'Lable'} />
           </ListItem>
           <ListItem button key={'Editlabels'} >
             <ListItemIcon>< EditOutlinedIcon /></ListItemIcon>

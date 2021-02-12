@@ -29,9 +29,9 @@ export default class ForgetPassword extends Component {
 
     handleClose = (event, reason) => {
         this.setState({
-          snackbarOpen:false
+            snackbarOpen: false
         })
-      };
+    };
 
     forgetHandler = () => {
         if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
@@ -55,7 +55,7 @@ export default class ForgetPassword extends Component {
                 }
                 console.log("responce data==>", responce);
             }).catch((error) => {
-                console.log("error is =",error);
+                console.log("error is =", error);
                 this.setState({
                     snackbarOpen: true,
                     snackbarMessage: "Forgot Password Unsuccessfull",
