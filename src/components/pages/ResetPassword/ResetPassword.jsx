@@ -61,10 +61,12 @@ export default class ResetPassword extends Component {
     this.state.visability ? this.setState({ visability: false })
       : this.setState({ visability: true })
   }
+
   visbleIconHandlerTwo = (event) =>{
     this.state.visabilityTwo ? this.setState({ visabilityTwo: false })
       : this.setState({ visabilityTwo: true })
 }
+
 handleReset = () => {
   if (!this.state.Email.match("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$")) {
     this.setState({
