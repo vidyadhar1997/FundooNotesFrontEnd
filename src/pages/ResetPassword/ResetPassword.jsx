@@ -6,7 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import './ResetPassword.css';
-import { reset } from '../../../services/userServices';
+import { reset } from '../../services/userServices';
 
 export default class ResetPassword extends Component {
   constructor(props) {

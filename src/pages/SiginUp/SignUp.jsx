@@ -7,7 +7,7 @@ import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import './SignUp.css'
 import { Link } from 'react-router-dom';
-import { signUp } from '../../../services/userServices';
+import { signUp } from '../../services/userServices';
 
 export default class SignUP extends Component {
   constructor(props) {

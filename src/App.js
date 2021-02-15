@@ -1,11 +1,10 @@
 import React from 'react';
 import{BrowserRouter as  Router,Switch,Route} from 'react-router-dom'
-import Login from './components/pages/Login/login';
-import ResetPassword from './components/pages/ResetPassword/ResetPassword';
-import SignUP from './components/pages/SiginUp/SignUp';
-import ForgetPassword from './components/pages/ForgetPassword/ForgetPassword';
-import Dashbord from './components/pages/DashBord/DashBord';
-import Note from './components/pages/Note/Note';
+import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/login';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
+import SignUP from './pages/SiginUp/SignUp';
 
 function App(){
     return(
@@ -16,8 +15,7 @@ function App(){
                     <Route path='/signup'  component={SignUP}/>
                     <Route path='/forget'  component={ForgetPassword}/>
                     <Route path='/reset'  component={ResetPassword}/>
-                    <Route path='/dashbord'  component={Dashbord}/>
-                    <Route path='/note'  component={Note}/>
+                    <Route path='/home'  component={Home}/>
                 </Switch>
             </Router>
         </div>

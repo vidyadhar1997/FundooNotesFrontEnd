@@ -5,7 +5,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import './ForgetPassword.css';
-import { forgot } from '../../../services/userServices';
+import { forgot } from '../../services/userServices';
 
 export default class ForgetPassword extends Component {
     constructor(props) {

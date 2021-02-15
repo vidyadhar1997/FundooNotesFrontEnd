@@ -21,9 +21,9 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import SearchIcon from "@material-ui/icons/Search";
 import { TextField } from '@material-ui/core';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
-import '../DashBord/DashBord.scss';
-import FundooImage from '../../../assets/logo.png'
-import AccountImage from '../../../assets/imageicon.png'
+import '../AppBarAndDrawer/AppBarAndDrawer.scss';
+import FundooImage from '../../assets/logo.png'
+import AccountImage from '../../assets/imageicon.png'
 import Card from '@material-ui/core/Card';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import { Button } from '@material-ui/core';
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer() {
+export default function AppBarAndDrawer() {
   const classes = useStyles();
   const theme = useTheme();
 

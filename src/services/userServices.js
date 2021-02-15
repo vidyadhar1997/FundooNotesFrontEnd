@@ -1,5 +1,4 @@
 import axios from "axios";
-import userApiConstant from "../apiConstants/userApiConstant";
 
 export function login(loginData) {
     try {

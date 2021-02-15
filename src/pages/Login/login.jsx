@@ -5,8 +5,8 @@ import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import './Login.css';
-import { login } from '../../../services/userServices';
+import '../Login/Login.css';
+import { login } from '../../services/userServices';
 
 export default class Login extends Component {
   constructor(props) {

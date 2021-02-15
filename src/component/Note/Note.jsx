@@ -5,8 +5,8 @@ import '../Note/Notes.scss'
 import { TextField } from '@material-ui/core'
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import IconButton from '@material-ui/core/IconButton';
-import Pin from "../../../assets/push.svg"
-import Push from "../../../assets/Pin.svg"
+import Pin from "../../assets/push.svg"
+import Push from "../../assets/pin.svg"
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import { Tooltip } from "@material-ui/core";
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
@@ -53,7 +53,6 @@ export default function Notes() {
                             onChange={titleHandler}
                             multiline
                             InputProps={{ disableUnderline: true }}
-
                         />
                         {pin ? <img id="pin" src={Pin} onClick={pins} /> : <img id="unPin" src={Push} onClick={pins} />}
                     </div>
