@@ -47,6 +47,17 @@
     font-weight: bold;
     overflow: visible;
 }
+.iconContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+}
+.icon{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
  .mainCard{
     width: 100%;
     display: flex;
@@ -54,4 +65,9 @@
     align-items: center;
     margin-top: 80px;
   }
- 
+  #image{
+    margin-bottom: 10px;
+  }
+ #button{
+  margin-right: 31px;
+ }
