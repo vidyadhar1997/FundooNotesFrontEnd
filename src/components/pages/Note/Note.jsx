@@ -3,6 +3,10 @@ import Card from '@material-ui/core/Card';
 import React from 'react';
 import '../Note/Notes.scss'
 import { TextField } from '@material-ui/core'
+import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
+import IconButton from '@material-ui/core/IconButton';
+import Pin from  "../../../assets/push.svg"
+import Push from "../../../assets/Pin.svg"
 
 export default function Notes() {
 
@@ -25,12 +29,15 @@ export default function Notes() {
         console.log("Note ", Note)
     }
 
+    const [pin, unpin] = React.useState(false);
+    const pins = () => {
+      unpin(!pin);
+      console.log("pin ",pin)
+    }
     return (
         <ClickAwayListener onClickAway={onHandleClick}>
             <div className="mainCard">
-                {card ?
-
-                    <Card id="active" >
+                {card ?<Card id="active" >
                         <div className="textFieldContainer">
                             <TextField
                                 className="textfield"
@@ -40,8 +47,10 @@ export default function Notes() {
                                 onChange={titleHandler}
                                 multiline
                                 InputProps={{ disableUnderline: true }}
+                               
                             />
-                        </div>
+                           {pin ? <img id="pin" src={Pin}  onClick={pins} />:<img id="unPin" src={Push}  onClick={pins}/>}
+                    </div>
                         <div className="textFieldContainer">
                             <TextField
                                 className="textfield"
@@ -57,7 +66,8 @@ export default function Notes() {
                     :
                     <Card id="inactive" onClick={inactiveNote}>
                         Take Note...
-         </Card>}
+                        <IconButton><ImageOutlinedIcon fontSize='medium' /> </IconButton>
+                     </Card>}
             </div>
         </ClickAwayListener>
     )
