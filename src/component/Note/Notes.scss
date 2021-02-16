@@ -75,3 +75,15 @@
  #button{
   margin-right: 31px;
  }
+ #card{
+  width: 354px;
+  height: 354px;
+  display: flex;
+  position: absolute;
+  right: 8px;
+  top: 65px;
+  border-radius: 7px;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+ }

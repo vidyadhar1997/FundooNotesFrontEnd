@@ -38,28 +38,52 @@ export default function Notes() {
 
     const [pin, unpin] = React.useState(false);
     const pins = () => {
-        unpin(!pin);
-        console.log("pin ", pin)
+        if (pin === false) {
+            unpin(true);
+            console.log("Note pinned");
+        }
+        else {
+            unpin(false);
+            console.log("Note unpinned");
+        }
     }
 
-    const createNotes=()=>{
-       if(title.length>0 || Note.length>0){
-        const noteData = {
-            title:title,
-            description:Note,
-            pin:pin,
-            userId:3,
+    const [archive, unArchive] = React.useState(false);
+    const archives = () => {
+        if (archive === false) {
+            unArchive(true);
+            console.log("Note Archive");
         }
-        createNote(noteData).then((responce) => {
-              console.log("new notes created successfully",responce)
-     }).catch((error) => {
-         console.log("error is ",error)
-        })
+        else {
+            unArchive(false);
+            console.log("Note unArchive");
+        }
     }
-    else{
-        console.log("title and discription should not be empty")
+
+    const [reminders, setReminders] = React.useState(false);
+    const reminder = () => {
+        setReminders(!reminders)
     }
-}
+
+    const createNotes = () => {
+        if (title.length > 0 || Note.length > 0) {
+            const noteData = {
+                title: title,
+                description: Note,
+                pin: pin,
+                archive: archive,
+                userId: 3,
+            }
+            createNote(noteData).then((responce) => {
+                console.log("new notes created successfully", responce)
+            }).catch((error) => {
+                console.log("error is ", error)
+            })
+        }
+        else {
+            console.log("title and discription should not be empty")
+        }
+    }
     return (
         <ClickAwayListener onClickAway={onHandleClick}>
             <div className="mainCard">
@@ -74,7 +98,7 @@ export default function Notes() {
                             multiline
                             InputProps={{ disableUnderline: true }}
                         />
-                        {pin ? <img id="pin" src={Pin} onClick={pins} /> : <img id="unPin" src={Push} onClick={pins} />}
+                        {!pin ? <Tooltip title="Pin note"><IconButton><img id="pin" src={Pin} onClick={pins} /> </IconButton></Tooltip> : <Tooltip title="Unpin note"><IconButton><img id="pin" src={Push} onClick={pins} /> </IconButton></Tooltip>}
                     </div>
                     <div className="textFieldContainer">
                         <TextField
@@ -90,7 +114,13 @@ export default function Notes() {
                     <div className="icon">
                         <div className="iconContainer">
                             <Tooltip title="Reminde me">
-                                <div><IconButton > <AddAlertOutlinedIcon fontSize="small" /> </IconButton></div>
+                                <div>
+                                    <IconButton onClick={reminder}>
+                                        <AddAlertOutlinedIcon fontSize="small" />
+                                    </IconButton>
+
+                                    {reminders ? <Card id="card"> hi suraj</Card> : undefined}
+                                </div>
                             </Tooltip>
                             <Tooltip title="Colabrator">
                                 <div><IconButton > <PersonAddOutlinedIcon fontSize="small" /> </IconButton></div>
@@ -106,7 +136,7 @@ export default function Notes() {
                                 </div>
                             </Tooltip>
                             <Tooltip title="Archive">
-                                <div><IconButton> <ArchiveOutlinedIcon fontSize="small" /> </IconButton></div>
+                                {archive ? <Tooltip title="Unarchive note"><IconButton> <ArchiveOutlinedIcon fontSize="small" onClick={archives} />  </IconButton></Tooltip> : <Tooltip title="Archive note"><IconButton><ArchiveOutlinedIcon fontSize="small" onClick={archives} /></IconButton></Tooltip>}
                             </Tooltip>
                         </div>
                         <div>
@@ -117,7 +147,7 @@ export default function Notes() {
                     :
                     <Card id="inactive" onClick={inactiveNote}>
                         <div>
-                        Take a note...</div>
+                            Take a note...</div>
                         <div><IconButton><ImageOutlinedIcon id="image" fontSize='medium' /> </IconButton></div>
                     </Card>}
             </div>
