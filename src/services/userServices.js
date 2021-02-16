@@ -1,9 +1,10 @@
 import axios from "axios";
+import userApiConstant from "../apiConstants/userApiConstant";
 
 export function login(loginData) {
     try {
-      const response = axios.post("https://localhost:44337/api/User/loginEmployee", loginData)
-      // const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.login,loginData);
+      // const response = axios.post("https://localhost:44337/api/User/loginEmployee", loginData)
+      const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.login,loginData);
       return response;
     }
     catch (error) {
@@ -13,7 +14,7 @@ export function login(loginData) {
 
   export function signUp(signUpData) {
     try {
-      const response = axios.post("https://localhost:44337/api/User/registerEmployee", signUpData)
+      const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.SignUP,signUpData);
       return response;
     }
     catch (error) {
@@ -23,7 +24,7 @@ export function login(loginData) {
 
   export function forgot(email) {
     try {
-      const response = axios.post("https://localhost:44337/api/User/forgetPassword?emailAddress="+email)
+      const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.Forget+email)
       return response;
     }
     catch (error) {
@@ -33,7 +34,7 @@ export function login(loginData) {
   
   export function reset(resetData) {
     try {
-      const response = axios.put("https://localhost:44337/api/User/resetPassword",resetData)
+      const response = axios.put(process.env.REACT_APP_SERVER_URL+userApiConstant.Reset,resetData)
       return response;
     }
     catch (error) {
@@ -43,7 +44,7 @@ export function login(loginData) {
 
   export function createNote(noteData) {
     try {
-      const response = axios.post("https://localhost:44337/api/Notes/addNotes",noteData,
+      const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.addNote,noteData,
       {
         headers: {
             Authorization:"Bearer "+localStorage.getItem('token')
@@ -59,7 +60,7 @@ export function login(loginData) {
 
   export function displayNote() {
     try {
-      const response = axios.get("https://localhost:44337/api/Notes/retrieveNotes",
+      const response = axios.get(process.env.REACT_APP_SERVER_URL+userApiConstant.getNote,
       {
         headers: {
             Authorization:"Bearer "+localStorage.getItem('token')
