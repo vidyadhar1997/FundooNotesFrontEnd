@@ -56,6 +56,22 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function displayNote() {
+    try {
+      const response = axios.get("https://localhost:44337/api/Notes/retrieveNotes",
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
   
   
   

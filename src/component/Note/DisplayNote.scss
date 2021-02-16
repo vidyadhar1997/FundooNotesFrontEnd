@@ -1,0 +1,22 @@
+#Card{
+min-height: 115px;
+padding: 14px;
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+width: 250px;
+margin: 10px;
+background-color: white;
+border-radius: 10px;
+text-decoration: black;
+}
+
+.users{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    margin-left: 180px;
+
+}
