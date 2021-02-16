@@ -76,6 +76,7 @@ export default function Notes() {
             }
             createNote(noteData).then((responce) => {
                 console.log("new notes created successfully", responce)
+                setCard(!card)
             }).catch((error) => {
                 console.log("error is ", error)
             })
