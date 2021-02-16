@@ -17,10 +17,12 @@
    flex-direction: row;
    justify-content: space-between;
    margin-top: -140px;
+   align-items: center;
  }
  .textFieldContainer{
    padding-top: 5px;
    width: 98%;
+   height: 45px;
    overflow: visible;
    display: flex;
    flex-direction: row;
@@ -39,15 +41,18 @@
 .textfield
 {
     border-style: none;
-    min-height: 30px;
-    padding-top: 10px;
+  //  min-height: 30px;
+   // padding-top: 10px;
     padding-right: 15px;
-    padding-bottom: 10px;
+    //padding-bottom: 10px;
     padding-left: 15px;
     width: 100%;
     font-size: x-large;
     font-weight: bold;
     overflow: visible;
+    
+ 
+    
 }
 .iconContainer{
   display: flex;
@@ -66,9 +71,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 80px;
-  }
-  #image{
-    margin-bottom: 10px;
   }
  #button{
   margin-right: 31px;

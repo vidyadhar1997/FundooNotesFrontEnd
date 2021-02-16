@@ -68,13 +68,16 @@ export default class Login extends Component {
 
       login(loginData).then((responce) => {
         if (responce.status === 200) {
+          console.log("res ",responce.data.token)
+          window.localStorage.setItem('token',responce.data.token)
           this.setState({
+            
             snackbarOpen: true,
             snackbarMessage: responce.data.message,
             snackServicity: 'success'
           })
           setTimeout(() => {
-            this.props.history.push("\dashbord")
+            this.props.history.push("\home")
         }, 4000)
         }
         console.log("responce data==>", responce);

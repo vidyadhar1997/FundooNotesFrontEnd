@@ -40,6 +40,22 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function createNote(noteData) {
+    try {
+      const response = axios.post("https://localhost:44337/api/Notes/addNotes",noteData,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
   
   
   

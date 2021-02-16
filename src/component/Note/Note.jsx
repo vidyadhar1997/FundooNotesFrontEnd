@@ -13,6 +13,7 @@ import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import PaletteOutlinedIcon from '@material-ui/icons/PaletteOutlined';
 import { Button } from '@material-ui/core';
+import { createNote } from "../../services/userServices";
 
 export default function Notes() {
 
@@ -27,12 +28,12 @@ export default function Notes() {
         setCard(true)
     }
     const NoteHandler = (e) => {
-        settitle(e.target.value)
-        console.log("title ", title)
-    }
-    const titleHandler = (e) => {
         setNote(e.target.value)
         console.log("Note ", Note)
+    }
+    const titleHandler = (e) => {
+        settitle(e.target.value)
+        console.log("title ", title)
     }
 
     const [pin, unpin] = React.useState(false);
@@ -40,6 +41,25 @@ export default function Notes() {
         unpin(!pin);
         console.log("pin ", pin)
     }
+
+    const createNotes=()=>{
+       if(title.length>0 || Note.length>0){
+        const noteData = {
+            title:title,
+            description:Note,
+            pin:pin,
+            userId:3,
+        }
+        createNote(noteData).then((responce) => {
+              console.log("new notes created successfully",responce)
+     }).catch((error) => {
+         console.log("error is ",error)
+        })
+    }
+    else{
+        console.log("title and discription should not be empty")
+    }
+}
     return (
         <ClickAwayListener onClickAway={onHandleClick}>
             <div className="mainCard">
@@ -60,7 +80,7 @@ export default function Notes() {
                         <TextField
                             className="textfield"
                             fullWidth
-                            placeholder='Takes Note...'
+                            placeholder='Take a note...'
                             textdecaration='none'
                             onChange={NoteHandler}
                             multiline
@@ -90,14 +110,15 @@ export default function Notes() {
                             </Tooltip>
                         </div>
                         <div>
-                            <Button id="button">close</Button>
+                            <Button id="button" onClick={createNotes}>close</Button>
                         </div>
                     </div>
                 </Card>
                     :
                     <Card id="inactive" onClick={inactiveNote}>
-                        Take Note...
-                        <IconButton><ImageOutlinedIcon id="image" fontSize='medium' /> </IconButton>
+                        <div>
+                        Take a note...</div>
+                        <div><IconButton><ImageOutlinedIcon id="image" fontSize='medium' /> </IconButton></div>
                     </Card>}
             </div>
         </ClickAwayListener>
