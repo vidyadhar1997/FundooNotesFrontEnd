@@ -71,6 +71,27 @@
  #button{
   margin-right: 31px;
  }
+
+ #NoteColor{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 150px;
+  height: 120px;
+ }
+ .palletColor{
+  width: 27px;
+  height: 27px;
+  margin:1px;
+  border-radius: 50%;
+ }
+ .palletColor:hover{
+  border: 2px solid black;
+}
+ #pallet{
+  border-radius: 50%;
+ }
  #cards{
   width: 354px;
   height: 354px;

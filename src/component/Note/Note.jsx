@@ -14,6 +14,9 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import PaletteOutlinedIcon from '@material-ui/icons/PaletteOutlined';
 import { Button } from '@material-ui/core';
 import { createNote } from "../../services/userServices";
+import Popper from '@material-ui/core/Popper';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 export default function Notes() {
 
@@ -65,21 +68,37 @@ export default function Notes() {
         setReminders(!reminders)
     }
 
-    // const DATA=[
-    //     {title:"Default",id="#fff"},
-    //     {title:"Default",id="#D7AEFB"},
-    //     {title:"Default", id="#FDCFE8"},
-    //     {title:"Default",id="#A7FFEB"},
-    //     {title:"Default",id="#CBF0F8"},
-    //     {title:"Default",id="#FBBC04"},
-    //     {title:"Default",id="#FFF475"},
-    //     {title:"Default",id="#CCFF90"},
-    //     {title:"Default",id="#FFFFFF"},
-    //     {title:"Default",id="#F28B82"},
-    //     {title:"Default",id="#AECBFA"},
-    //     {title:"Default",id="#E6C9A8"},
-    //     {title:"Default",id="#E8EAED"},
-    // ]
+    const useStyles = makeStyles((theme) => ({
+        paper: {
+            padding: theme.spacing(1),
+            backgroundColor: theme.palette.background.paper,
+        },
+    }));
+
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popper' : undefined;
+     const[colour,setBgcolor]=React.useState('');
+    const DATA = [
+        { title:"Default", id:"#fff" },
+        { title:"Red", id:"#CD5C5C" },
+        { title:"Orange", id:"#fbbc04" },
+        { title:"yello", id:"#fff475" },
+        { title:"green", id:"#ccff90" },
+        { title:"Teal", id:"#FAF0E6" },
+        { title:"Blue",id:"#00FFFF" },
+        { title:"Dark Blue", id:"#0000FF" },
+        { title:"Purple", id:"#800080" },
+        { title:"Pink",id:"#FFC0CB" },
+        { title:"Browm", id:"#F4A460" },
+        { title:"Grey",id:"#808080" }
+    ];
     const createNotes = () => {
         if (title.length > 0 || Note.length > 0) {
             const noteData = {
@@ -88,6 +107,7 @@ export default function Notes() {
                 pin: pin,
                 archive: archive,
                 userId: 3,
+                colour:colour
             }
             createNote(noteData).then((responce) => {
                 console.log("new notes created successfully", responce)
@@ -103,7 +123,7 @@ export default function Notes() {
     return (
         <ClickAwayListener onClickAway={onHandleClick}>
             <div className="mainCard">
-                {card ? <Card id="active" >
+                {card ? <Card id="active" style={{ backgroundColor: colour }} >
                     <div className="textFieldContainer">
                         <TextField
                             className="textfield"
@@ -141,9 +161,22 @@ export default function Notes() {
                             <Tooltip title="Colabrator">
                                 <div><IconButton > <PersonAddOutlinedIcon fontSize="small" /> </IconButton></div>
                             </Tooltip>
+
                             <Tooltip title="change Color">
-                                <div><IconButton > <PaletteOutlinedIcon closefontSize="small" /></IconButton></div>
+                                <div><IconButton onMouseOver={handleClick}>
+                                    <PaletteOutlinedIcon closefontSize="small" />
+                                </IconButton>
+                                    <Popper id={id} open={open} anchorEl={anchorEl}>
+                                        <div className={classes.paper} id="NoteColor">
+                                            {DATA.map((item) => (
+                                                <Card className="palletColor" id="pallet" onClick={() => setBgcolor(item.id)} style={{ backgroundColor: item.id }}></Card>
+                                            ))}
+                                        </div>
+                                    </Popper>
+                                </div>
                             </Tooltip>
+
+
                             <Tooltip title="image add">
                                 <div>
                                     <IconButton >

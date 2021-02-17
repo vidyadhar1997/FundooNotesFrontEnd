@@ -25,7 +25,7 @@ export default function DisplayNote() {
             {data.reverse().map((note, index) => {
                 return (
                     <div className="dk">
-                    <Card id="Card">
+                    <Card id="Card"  style={{ backgroundColor: note.colour }}>
                         <InputBase multiline value={note.title}></InputBase>
                         <InputBase multiline value={note.description}></InputBase>
                         <div className="displayIcon"><DisplayIcon/></div>
