@@ -65,6 +65,21 @@ export default function Notes() {
         setReminders(!reminders)
     }
 
+    // const DATA=[
+    //     {title:"Default",id="#fff"},
+    //     {title:"Default",id="#D7AEFB"},
+    //     {title:"Default", id="#FDCFE8"},
+    //     {title:"Default",id="#A7FFEB"},
+    //     {title:"Default",id="#CBF0F8"},
+    //     {title:"Default",id="#FBBC04"},
+    //     {title:"Default",id="#FFF475"},
+    //     {title:"Default",id="#CCFF90"},
+    //     {title:"Default",id="#FFFFFF"},
+    //     {title:"Default",id="#F28B82"},
+    //     {title:"Default",id="#AECBFA"},
+    //     {title:"Default",id="#E6C9A8"},
+    //     {title:"Default",id="#E8EAED"},
+    // ]
     const createNotes = () => {
         if (title.length > 0 || Note.length > 0) {
             const noteData = {
@@ -120,7 +135,7 @@ export default function Notes() {
                                         <AddAlertOutlinedIcon fontSize="small" />
                                     </IconButton>
 
-                                    {reminders ? <Card id="card"> hi suraj</Card> : undefined}
+                                    {reminders ? <Card id="cards"> hi dhiraj</Card> : undefined}
                                 </div>
                             </Tooltip>
                             <Tooltip title="Colabrator">

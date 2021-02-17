@@ -27,6 +27,7 @@ import AccountImage from '../../assets/imageicon.png'
 import Card from '@material-ui/core/Card';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import { Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 
 const drawerWidth = 250;
@@ -112,6 +113,12 @@ export default function AppBarAndDrawer() {
     setCard(!card);
   }
 
+  const history=useHistory();
+  const handleSignOut=()=>{
+    localStorage.clear();
+   history.push("\login")
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -149,7 +156,7 @@ export default function AppBarAndDrawer() {
           </div>
             </div>
             <div id="button">
-              <Button variant="outlined" id="button">sigin out</Button>
+              <Button variant="outlined" id="button" onClick={handleSignOut}>sigin out</Button>
             </div>
           </Card> : undefined}
         </Toolbar>

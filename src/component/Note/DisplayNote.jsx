@@ -3,6 +3,7 @@ import { displayNote } from '../../services/userServices';
 import { useEffect } from 'react';
 import { Card, InputBase } from '@material-ui/core';
 import '../Note/DisplayNote.scss'
+import DisplayIcon from './DisplayIcon';
 
 export default function DisplayNote() {
     const [data, setdata] = React.useState([]);
@@ -23,10 +24,13 @@ export default function DisplayNote() {
         <div className="users">
             {data.reverse().map((note, index) => {
                 return (
+                    <div className="dk">
                     <Card id="Card">
                         <InputBase multiline value={note.title}></InputBase>
                         <InputBase multiline value={note.description}></InputBase>
+                        <div className="displayIcon"><DisplayIcon/></div>
                     </Card>
+                    </div>
                 )
             })}
         </div>

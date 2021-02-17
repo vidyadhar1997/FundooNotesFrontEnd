@@ -9,9 +9,8 @@ margin: 10px;
 background-color: white;
 border-radius: 10px;
 text-decoration: black;
-
+// cursor: context-menu;
 }
-
 .users{
     display: flex;
     flex-wrap: wrap;
@@ -19,5 +18,21 @@ text-decoration: black;
     align-self: center;
     justify-content: center;
     margin-left: 180px;
+    margin-top: 2px;
+}
 
+.displayIcon{
+    display: flex;
+    padding-left: -10vh;
+    opacity: 0%;
+    color: black;
+    flex-direction: row;
+    margin-left: -15px;
+    margin-bottom: -5px;
+}
+.dk:hover{
+    border-radius: 10px;
+    .displayIcon{
+    opacity: 100%;
+}
 }
