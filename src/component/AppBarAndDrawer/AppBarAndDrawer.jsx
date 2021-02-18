@@ -127,7 +127,11 @@ export default function AppBarAndDrawer() {
   const notesHandle=()=>{
     historyNote.push("/home")
   }
+ const  historyReminders=useHistory();
 
+const handleReminders=()=>{
+  historyReminders.push("/reminder")
+}
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -194,9 +198,9 @@ export default function AppBarAndDrawer() {
             <ListItemIcon  ><EmojiObjectsOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Notes'} />
           </ListItem>
-          <ListItem button key={'Remainders'}>
+          <ListItem button key={'Reminders'} onClick={handleReminders}>
             <ListItemIcon><NotificationsOutlinedIcon /></ListItemIcon>
-            <ListItemText primary={'Remainders'} />
+            <ListItemText primary={'Reminders'} />
           </ListItem>
           <ListItem button key={'Lable'}>
             <ListItemIcon>< LabelOutlinedIcon /></ListItemIcon>

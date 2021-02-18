@@ -19,6 +19,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DateFnsUtils from '@date-io/date-fns';
+import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -281,6 +282,9 @@ export default function Notes() {
                             </Tooltip>
                             <Tooltip title="Archive">
                                 {archive ? <Tooltip title="Unarchive note"><IconButton> <ArchiveOutlinedIcon fontSize="small" onClick={archives} />  </IconButton></Tooltip> : <Tooltip title="Archive note"><IconButton><ArchiveOutlinedIcon fontSize="small" onClick={archives} /></IconButton></Tooltip>}
+                            </Tooltip>
+                            <Tooltip title="MoreOptions">
+                            <IconButton > <MoreVertOutlinedIcon/></IconButton>
                             </Tooltip>
                         </div>
                         <div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import{BrowserRouter as  Router,Switch,Route} from 'react-router-dom'
 import ArchiveNote from './component/Archive/ArchiveNote';
+import Reminder from './component/Reminder/Reminder';
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/login';
@@ -18,6 +19,7 @@ function App(){
                     <Route path='/reset'  component={ResetPassword}/>
                     <Route path='/home'  component={Home}/>
                     <Route path='/archive'  component={ArchiveNote}/>
+                    <Route path='/reminder'  component={Reminder}/>
                 </Switch>
             </Router>
         </div>

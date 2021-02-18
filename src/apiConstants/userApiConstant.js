@@ -6,5 +6,6 @@ module.exports={
     Reset:"/User/resetPassword",
     addNote:"/Notes/addNotes",
     getNote:"/Notes/retrieveNotes?userId=",
-    archiveNote:"/Notes/retrieveAllArchieveNotes"
+    archiveNote:"/Notes/retrieveAllArchieveNotes",
+    Reminder:"/Notes/getAllNotesWhoseReminderIsSet"
 }
