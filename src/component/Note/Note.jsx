@@ -16,6 +16,15 @@ import { Button } from '@material-ui/core';
 import { createNote } from "../../services/userServices";
 import Popper from '@material-ui/core/Popper';
 import { makeStyles } from '@material-ui/core/styles';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+} from '@material-ui/pickers';
+import { setDate } from "date-fns";
+
 
 
 export default function Notes() {
@@ -23,8 +32,11 @@ export default function Notes() {
     const [card, setCard] = React.useState(false);
     const [title, settitle] = React.useState('');
     const [Note, setNote] = React.useState('');
+
     const onHandleClick = () => {
         setCard(false);
+        setReminderDatePicker(false)
+        setReminders(false)
     }
 
     const inactiveNote = () => {
@@ -66,12 +78,22 @@ export default function Notes() {
     const [reminders, setReminders] = React.useState(false);
     const reminder = () => {
         setReminders(!reminders)
+        setReminderDatePicker(false)
     }
 
     const useStyles = makeStyles((theme) => ({
         paper: {
             padding: theme.spacing(1),
             backgroundColor: theme.palette.background.paper,
+        },
+        container: {
+            display: 'flex',
+            flexWrap: 'wrap',
+        },
+        textField: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1),
+            width: 200,
         },
     }));
 
@@ -84,21 +106,43 @@ export default function Notes() {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
-     const[colour,setBgcolor]=React.useState('');
+    const [colour, setBgcolor] = React.useState('');
     const DATA = [
-        { title:"Default", id:"#fff" },
-        { title:"Red", id:"#CD5C5C" },
-        { title:"Orange", id:"#fbbc04" },
-        { title:"yello", id:"#fff475" },
-        { title:"green", id:"#ccff90" },
-        { title:"Teal", id:"#FAF0E6" },
-        { title:"Blue",id:"#00FFFF" },
-        { title:"Dark Blue", id:"#0000FF" },
-        { title:"Purple", id:"#800080" },
-        { title:"Pink",id:"#FFC0CB" },
-        { title:"Browm", id:"#F4A460" },
-        { title:"Grey",id:"#808080" }
+        { title: "Default", id: "#fff" },
+        { title: "Red", id: "#CD5C5C" },
+        { title: "Orange", id: "#fbbc04" },
+        { title: "yello", id: "#fff475" },
+        { title: "green", id: "#ccff90" },
+        { title: "Teal", id: "#FAF0E6" },
+        { title: "Blue", id: "#00FFFF" },
+        { title: "Dark Blue", id: "#0000FF" },
+        { title: "Purple", id: "#800080" },
+        { title: "Pink", id: "#FFC0CB" },
+        { title: "Browm", id: "#F4A460" },
+        { title: "Grey", id: "#808080" }
     ];
+
+    const [reminderPicker, setReminderDatePicker] = React.useState(false);
+    const reminderDate = () => {
+        setReminderDatePicker(!reminderPicker)
+    }
+
+
+    const arrowHandle = () => {
+        setReminderDatePicker(false)
+    }
+    const [selectedDate, setSelectedDate] = React.useState(new Date((datee, ':11:54').toString()));
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        console.log("time", selectedDate)
+    };
+    const [datee, setDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const dateHandler = (e) => {
+        setDate(e.target.value)
+        console.log("date", datee)
+    }
+
     const createNotes = () => {
         if (title.length > 0 || Note.length > 0) {
             const noteData = {
@@ -106,12 +150,14 @@ export default function Notes() {
                 description: Note,
                 pin: pin,
                 archive: archive,
-                userId: 3,
-                colour:colour
+                userId: parseInt(window.localStorage.getItem('userId')),
+                colour: colour,
+                reminder: (datee, selectedDate).toString()
             }
             createNote(noteData).then((responce) => {
                 console.log("new notes created successfully", responce)
                 setCard(!card)
+                // history.push("/home")
             }).catch((error) => {
                 console.log("error is ", error)
             })
@@ -154,16 +200,65 @@ export default function Notes() {
                                     <IconButton onClick={reminder}>
                                         <AddAlertOutlinedIcon fontSize="small" />
                                     </IconButton>
+                                    {(!reminderPicker && reminders) ? <Card id="cards">
+                                        <div className="reminderMe">
+                                            <div className="Remind">Reminder:</div>
+                                            <div className="Later">Later today:</div>
+                                            <div className="Tomorrow">Tomorrow:</div>
+                                            <div className="week">Next week:</div>
+                                            <div className="week" onClick={reminderDate}>
+                                                <AccessTimeIcon fontSize="small" />Pick date & time:
+                                             </div>
+                                        </div>
 
-                                    {reminders ? <Card id="cards"> hi dhiraj</Card> : undefined}
+                                    </Card> : reminderPicker ? <Card id="cards">
+                                        <div className="arrowss">
+                                            <ArrowBackIcon fontSize="small" onClick={arrowHandle} /> date & time:
+                                         </div>
+                                        <div className="bor"></div>
+                                        <div>
+                                            <form className={classes.container} noValidate>
+                                                <TextField
+                                                    id="date"
+                                                    label="Birthday"
+                                                    type="date"
+                                                    defaultValue="2017-05-24"
+                                                    value={datee}
+                                                    onChange={dateHandler}
+                                                    className={classes.textField}
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                />
+                                            </form>
+                                        </div>
+                                        <div className="time">
+                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <KeyboardTimePicker
+                                                    margin="normal"
+                                                    id="time-picker"
+                                                    label="Time picker"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change time',
+                                                    }}
+                                                />
+                                            </MuiPickersUtilsProvider>
+                                        </div>
+                                        <div>
+                                            <Button id="button">save</Button>
+                                        </div>
+                                    </Card>
+
+                                            : undefined}
                                 </div>
                             </Tooltip>
                             <Tooltip title="Colabrator">
                                 <div><IconButton > <PersonAddOutlinedIcon fontSize="small" /> </IconButton></div>
                             </Tooltip>
-
                             <Tooltip title="change Color">
-                                <div><IconButton onMouseOver={handleClick}>
+                                <div><IconButton onMouseOver={handleClick} >
                                     <PaletteOutlinedIcon closefontSize="small" />
                                 </IconButton>
                                     <Popper id={id} open={open} anchorEl={anchorEl}>

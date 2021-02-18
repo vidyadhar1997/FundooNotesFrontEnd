@@ -119,6 +119,15 @@ export default function AppBarAndDrawer() {
    history.push("\login")
   }
 
+  const historys=useHistory();
+  const handleArchive=()=>{
+    historys.push("/archive")
+  }
+  const historyNote=useHistory();
+  const notesHandle=()=>{
+    historyNote.push("/home")
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -147,15 +156,21 @@ export default function AppBarAndDrawer() {
           </div>
           <div className="Account"><IconButton onClick={icon}><AccountCircleOutlinedIcon fontSize="large" /></IconButton></div>
           {card ? <Card id="card">
-            <div >
+            <div>
               <img id="accountCircle" src={AccountImage} />
+            </div>
+            <div>
+            {window.localStorage.getItem('email')}
+            </div>
+            <div>
+            {window.localStorage.getItem('firstname')} {window.localStorage.getItem('lastname')}
             </div>
             <div className="main-personIcon">
               <div id="personIcon">
-                <PersonAddOutlinedIcon /> Add another account
+                <PersonAddOutlinedIcon />Add another account 
           </div>
             </div>
-            <div id="button">
+            <div id="buttons">
               <Button variant="outlined" id="button" onClick={handleSignOut}>sigin out</Button>
             </div>
           </Card> : undefined}
@@ -175,7 +190,7 @@ export default function AppBarAndDrawer() {
         }}
       >
         <List>
-          <ListItem button key={'Notes'}>
+          <ListItem button key={'Notes'} onClick={notesHandle}>
             <ListItemIcon  ><EmojiObjectsOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Notes'} />
           </ListItem>
@@ -191,9 +206,9 @@ export default function AppBarAndDrawer() {
             <ListItemIcon>< EditOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Edit labels'} />
           </ListItem>
-          <ListItem button key={'Archive'}>
+          <ListItem button key={'Archive'} onClick={handleArchive}>
             <ListItemIcon ><ArchiveOutlinedIcon /></ListItemIcon>
-            <ListItemText primary={'Archive'} />
+            <ListItemText primary={'Archive'} onClick={handleArchive} />
           </ListItem>
           <ListItem button className="trash">
             <ListItemIcon >< DeleteOutlinedIcon /></ListItemIcon>

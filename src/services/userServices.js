@@ -58,9 +58,25 @@ export function login(loginData) {
     }
   }
 
-  export function displayNote() {
+  export function displayNote(userId) {
     try {
-      const response = axios.get(process.env.REACT_APP_SERVER_URL+userApiConstant.getNote,
+      const response = axios.get(process.env.REACT_APP_SERVER_URL+userApiConstant.getNote+userId,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
+
+  export function getAllArchiveNote() {
+    try {
+      const response = axios.get(process.env.REACT_APP_SERVER_URL+userApiConstant.archiveNote,
       {
         headers: {
             Authorization:"Bearer "+localStorage.getItem('token')

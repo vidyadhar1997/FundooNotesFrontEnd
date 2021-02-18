@@ -9,15 +9,15 @@ margin: 10px;
 background-color: white;
 border-radius: 10px;
 text-decoration: black;
-// cursor: context-menu;
 }
+
 .users{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-self: center;
     justify-content: center;
-    margin-left: 180px;
+    margin-left: 196px;
     margin-top: 2px;
 }
 
@@ -31,6 +31,9 @@ text-decoration: black;
     margin-bottom: -5px;
 }
 .dk:hover{
+    background-clip: padding-box;
+    border: solid transparent;
+    border-width: 0 0 0 4px;
     border-radius: 10px;
     .displayIcon{
     opacity: 100%;

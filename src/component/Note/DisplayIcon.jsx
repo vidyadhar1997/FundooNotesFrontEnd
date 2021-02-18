@@ -7,6 +7,9 @@ import { Tooltip } from "@material-ui/core";
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import PaletteOutlinedIcon from '@material-ui/icons/PaletteOutlined';
+import Popper from '@material-ui/core/Popper';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
 
 export default function DisplayIcon() {
 
@@ -21,6 +24,37 @@ export default function DisplayIcon() {
             console.log("Note unArchive");
         }
     }
+    const useStyles = makeStyles((theme) => ({
+        paper: {
+            padding: theme.spacing(1),
+            backgroundColor: theme.palette.background.paper,
+        },
+    }));
+
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popper' : undefined;
+     const[colour,setBgcolor]=React.useState('');
+    const DATA = [
+        { title:"Default", id:"#fff" },
+        { title:"Red", id:"#CD5C5C" },
+        { title:"Orange", id:"#fbbc04" },
+        { title:"yello", id:"#fff475" },
+        { title:"green", id:"#ccff90" },
+        { title:"Teal", id:"#FAF0E6" },
+        { title:"Blue",id:"#00FFFF" },
+        { title:"Dark Blue", id:"#0000FF" },
+        { title:"Purple", id:"#800080" },
+        { title:"Pink",id:"#FFC0CB" },
+        { title:"Browm", id:"#F4A460" },
+        { title:"Grey",id:"#808080" }
+    ];
 
     return (
         <div  className="iconContainers">
@@ -35,8 +69,18 @@ export default function DisplayIcon() {
                 <div><IconButton > <PersonAddOutlinedIcon fontSize="small" /> </IconButton></div>
             </Tooltip>
             <Tooltip title="change Color">
-                <div><IconButton > <PaletteOutlinedIcon closefontSize="small" /></IconButton></div>
-            </Tooltip>
+                                <div><IconButton onMouseOver={handleClick}>
+                                    <PaletteOutlinedIcon closefontSize="small" />
+                                </IconButton>
+                                    <Popper id={id} open={open} anchorEl={anchorEl}>
+                                        <div className={classes.paper} id="NoteColor">
+                                            {DATA.map((item) => (
+                                                <Card className="palletColor" id="pallet" onClick={() => setBgcolor(item.id)} style={{ backgroundColor: item.id }}></Card>
+                                            ))}
+                                        </div>
+                                    </Popper>
+                                </div>
+                            </Tooltip>
             <Tooltip title="image add">
                 <div>
                     <IconButton >

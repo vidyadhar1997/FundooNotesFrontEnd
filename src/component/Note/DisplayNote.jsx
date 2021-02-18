@@ -9,7 +9,8 @@ export default function DisplayNote() {
     const [data, setdata] = React.useState([]);
 
     const getNote = () => {
-        displayNote().then((responce) => {
+        let userid=parseInt(window.localStorage.getItem('userId'));
+        displayNote(userid).then((responce) => {
             console.log("resp ", responce.data.data)
             setdata(responce.data.data)
         }).catch((error) => {

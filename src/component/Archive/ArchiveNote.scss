@@ -1,0 +1,48 @@
+.iconContainers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 65%;
+    align-items: center;
+  }
+  #Card{
+    min-height: 115px;
+    padding: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 250px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: black;
+    }
+    
+    .users{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-self: center;
+        justify-content: center;
+        margin-left: 196px;
+        margin-top: 2px;
+    }
+    
+    .displayIcon{
+        display: flex;
+        padding-left: -10vh;
+        opacity: 0%;
+        color: black;
+        flex-direction: row;
+        margin-left: -15px;
+        margin-bottom: -5px;
+    }
+    .dk:hover{
+        background-clip: padding-box;
+        border: solid transparent;
+        border-width: 0 0 0 4px;
+        border-radius: 10px;
+        .displayIcon{
+        opacity: 100%;
+    }
+    }

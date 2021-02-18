@@ -70,6 +70,10 @@ export default class Login extends Component {
         if (responce.status === 200) {
           console.log("res ",responce.data.token)
           window.localStorage.setItem('token',responce.data.token)
+          window.localStorage.setItem('userId',responce.data.userId)
+          window.localStorage.setItem('firstname',responce.data.firstName)
+          window.localStorage.setItem('lastname',responce.data.lastName)
+          window.localStorage.setItem('email',responce.data.data)
           this.setState({
             
             snackbarOpen: true,

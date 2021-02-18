@@ -93,8 +93,8 @@
   border-radius: 50%;
  }
  #cards{
-  width: 354px;
-  height: 354px;
+  width: 270px;
+  height: 270px;
   display: flex;
   position: absolute;
   right: 8px;
@@ -105,5 +105,53 @@
   flex-direction: column;
   z-index: 1000;
   margin-top: 195px;
-  margin-right: 680px;
+  margin-right: 770px;
  }
+ .reminderMe{
+  display: flex;
+  height: 73%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 226px;
+ }
+ .Reminder{
+   background-color:darkblue;
+ }
+ .week{
+  display: flex;
+  justify-content: space-between;
+  width: 137px;
+}
+.arrowss{
+  display: flex;
+  justify-content: start;
+  width: 77%;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.time{
+  width: 77%;
+    display: flex;
+    justify-content: center;
+}
+.bor{
+  width: 100%;
+  border-bottom: groove;
+  border-width: 0.5px;
+}
+#cardss{
+  width: 270px;
+  height: 270px;
+  // display: flex;
+  // position: absolute;
+  // right: 8px;
+  // top: 65px;
+  // border-radius: 7px;
+  // justify-content: space-evenly;
+  // align-items: center;
+  // flex-direction: column;
+  // z-index: 1000;
+  // margin-top: 195px;
+  // margin-right: 770px;
+}
+ 
