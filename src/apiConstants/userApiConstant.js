@@ -8,5 +8,6 @@ module.exports={
     getNote:"/Notes/retrieveNotes?userId=",
     archiveNote:"/Notes/retrieveAllArchieveNotes",
     Reminder:"/Notes/getAllNotesWhoseReminderIsSet",
-    Lables:"/Lable/addLable"
+    Lables:"/Lable/addLable",
+    Trash:"/Notes/retrieveAllTrashNotes"
 }

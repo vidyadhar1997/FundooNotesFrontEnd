@@ -1,24 +1,24 @@
-import { getAllArchiveNote } from "../../services/userServices";
 import DisplayIcon from "../Icons/DisplayIcon";
 import { useEffect } from 'react';
 import { Card, InputBase } from '@material-ui/core';
 import React from 'react';
 import '../Archive/ArchiveNote.scss'
 import AppBarAndDrawer from "../AppBarAndDrawer/AppBarAndDrawer";
+import { trashNotes } from "../../services/userServices";
 
-export default function ArchiveNote(){
-    const [data, setdata] = React.useState([]);
+export default function TrashNote(){
+    const [data, setData] = React.useState([]);
 
-    const getArchiveNote = () => {
-       getAllArchiveNote().then((responce) => {
+    const getTrashNote = () => {
+       trashNotes ().then((responce) => {
             console.log("resp ", responce.data.data)
-            setdata(responce.data.data)
+            setData(responce.data.data)
         }).catch((error) => {
             console.log("error is ", error)
         });
     }
     useEffect(() => {
-        getArchiveNote()
+        getTrashNote()
     }, []);
 
 return (

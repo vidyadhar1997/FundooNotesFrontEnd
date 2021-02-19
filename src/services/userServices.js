@@ -121,6 +121,22 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function trashNotes() {
+    try {
+      const response = axios.get(process.env.REACT_APP_SERVER_URL+userApiConstant.Trash,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
   
   
   

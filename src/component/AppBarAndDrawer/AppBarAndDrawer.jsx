@@ -123,14 +123,20 @@ export default function AppBarAndDrawer() {
   const handleArchive=()=>{
     historys.push("/archive")
   }
+
   const historyNote=useHistory();
   const notesHandle=()=>{
     historyNote.push("/home")
   }
- const  historyReminders=useHistory();
 
+const  historyReminders=useHistory();
 const handleReminders=()=>{
   historyReminders.push("/reminder")
+}
+
+const  historyTrashe=useHistory();
+const handleTrash=()=>{
+  historyTrashe.push("/trash")
 }
   return (
     <div className={classes.root}>
@@ -215,7 +221,7 @@ const handleReminders=()=>{
             <ListItemText primary={'Archive'} onClick={handleArchive} />
           </ListItem>
           <ListItem button className="trash">
-            <ListItemIcon >< DeleteOutlinedIcon /></ListItemIcon>
+            <ListItemIcon >< DeleteOutlinedIcon onClick={handleTrash}/></ListItemIcon>
             <ListItemText primary={'Trash'} />
           </ListItem>
         </List>
