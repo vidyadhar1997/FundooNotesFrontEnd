@@ -56,7 +56,10 @@ export default function DisplayIcon() {
         { title: "Browm", id: "#F4A460" },
         { title: "Grey", id: "#808080" }
     ];
-
+    const [cards, setCards] = React.useState(false);
+    const moreOptionHandler = () => {
+        setCards(!cards);
+    }
     return (
         <div className="iconContainers">
             <Tooltip title="Reminde me">
@@ -93,8 +96,17 @@ export default function DisplayIcon() {
                 {archive ? <Tooltip title="Unarchive note"><IconButton> <ArchiveOutlinedIcon fontSize="small" onClick={archives} />  </IconButton></Tooltip> : <Tooltip title="Archive note"><IconButton><ArchiveOutlinedIcon fontSize="small" onClick={archives} /></IconButton></Tooltip>}
             </Tooltip>
             <Tooltip title="MoreOptions">
-                <IconButton > <MoreVertOutlinedIcon /></IconButton>
+                <IconButton onClick={moreOptionHandler} > <MoreVertOutlinedIcon />
+                </IconButton>
             </Tooltip>
+            {cards ? <Card id="cardMoreOptions">
+                <div>
+                    Delete note
+                    </div>
+                <div>
+                    Add Label
+                            </div>
+            </Card> : undefined}
         </div>
     )
 }

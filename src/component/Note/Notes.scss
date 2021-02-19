@@ -7,6 +7,26 @@
   overflow: visible;
   margin-top: -140px;
  }
+ #cardMoreOption{
+  background-color: #fff;
+  border-width: 0;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  position: absolute;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 5003;
+  width: 130px;
+ height: 82px;
+  margin-top: 122px;
+  margin-left: 95px;
+  font-size: 17px;
+}
+#addLable{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 31px
+}
  #inactive{
    width: 600px;
    height: 10px;
@@ -125,12 +145,12 @@
 .arrowss{
   display: flex;
   justify-content: start;
-  width: 77%;
-padding-top: 10px;
-padding-bottom: 10px;
+  width: 94%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .time{
-  width: 77%;
+    width: 101%;
     display: flex;
     justify-content: center;
 }
