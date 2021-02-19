@@ -21,6 +21,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DateFnsUtils from '@date-io/date-fns';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import Chip from '@material-ui/core/Chip';
+import InputBase from '@material-ui/core/InputBase';
+
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -28,10 +30,7 @@ import {
 } from '@material-ui/pickers';
 import { setDate } from "date-fns";
 
-
-
 export default function Notes() {
-
     const [card, setCard] = React.useState(false);
     const [title, settitle] = React.useState('');
     const [Note, setNote] = React.useState('');
@@ -40,6 +39,7 @@ export default function Notes() {
         setCard(false);
         setReminderDatePicker(false)
         setReminders(false)
+        setLableDatePicker(false)
     }
 
     const inactiveNote = () => {
@@ -137,24 +137,36 @@ export default function Notes() {
 
     const [selectedDate, setSelectedDate] = React.useState(new Date('2021-02-18T21:11:54'));
     const handleDateChange = (date) => {
-      setSelectedDate(date);
+        setSelectedDate(date);
     };
 
     const handleDelete = () => {
         console.info('You clicked the delete icon.');
-      };
-    
-      const handleClicks = () => {
-        console.info('You clicked the Chip.');
-      };
+    };
 
-    const handleReminderNote=()=>{
+    const handleClicks = () => {
+        console.info('You clicked the Chip.');
+    };
+
+    const handleReminderNote = () => {
 
     }
     const [cards, setCards] = React.useState(false);
     const moreOptionHandler = () => {
-      setCards(!cards);
+        setCards(!cards);
     }
+
+    const [lablePickers, setLableDatePicker] = React.useState(false);
+    const LableDate = () => {
+        setLableDatePicker(!lablePickers)
+    }
+
+    const [Labless, setLabel] = React.useState('');
+    const LableHandler=(event)=>{
+        setLabel(event.target.value)
+        console.log("lable",Labless)
+    }
+
     const createNotes = () => {
         if (title.length > 0 || Note.length > 0) {
             const noteData = {
@@ -164,7 +176,8 @@ export default function Notes() {
                 archive: archive,
                 userId: parseInt(window.localStorage.getItem('userId')),
                 colour: colour,
-                reminder: selectedDate.toString()
+                reminder: selectedDate.toString(),
+                label:Labless
             }
             createNote(noteData).then((responce) => {
                 console.log("new notes created successfully", responce)
@@ -206,11 +219,12 @@ export default function Notes() {
                         />
                     </div>
                     <Chip
-                            icon={<AccessTimeIcon fontSize="small" />}
-                             label="Clickable deletable"
-                             onClick={handleClicks}
-                            onDelete={handleDelete}
-                         />
+                        icon={<AccessTimeIcon fontSize="small" />}
+                        label="Clickable deletable"
+                        onClick={handleClicks}
+                        onDelete={handleDelete}
+                        id="chip"
+                    />
                     <div className="icon">
                         <div className="iconContainer">
                             <Tooltip title="Reminde me">
@@ -236,18 +250,18 @@ export default function Notes() {
                                         <div className="bor"></div>
                                         <div>
                                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                            <KeyboardDatePicker
-                                                margin="normal"
-                                                id="date-picker-dialog"
-                                                label="Date picker dialog"
-                                                format="MM/dd/yyyy"
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                KeyboardButtonProps={{
-                                                    'aria-label': 'change date',
-                                                }}
-                                            />
-                                             </MuiPickersUtilsProvider>
+                                                <KeyboardDatePicker
+                                                    margin="normal"
+                                                    id="date-picker-dialog"
+                                                    label="Date picker dialog"
+                                                    format="MM/dd/yyyy"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change date',
+                                                    }}
+                                                />
+                                            </MuiPickersUtilsProvider>
                                         </div>
                                         <div className="time">
                                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -301,11 +315,21 @@ export default function Notes() {
                             </Tooltip>
                             <Tooltip title="MoreOptions">
                                 <IconButton onClick={moreOptionHandler} >
-                                     <MoreVertOutlinedIcon />
-                                     {cards ? <Card id="cardMoreOption">
-                                        <div id="addLable">Add Lable</div> 
-                                         </Card> : undefined}
-                                     </IconButton>
+                                    <MoreVertOutlinedIcon />
+
+                                    {(!lablePickers && cards) ? <Card id="cardMoreOption">
+                                        <div id="addLable" onClick={LableDate}>Add Lable</div>
+                                    </Card> : lablePickers ? <Card id="cardMoreOptionss">
+                                        <div className="inputBases">
+                                            <div>
+                                                Label note
+                                         </div>
+                                            <div>
+                                                <InputBase placeholder="Enter label name" onChange={LableHandler}/>
+                                            </div>
+                                        </div>
+                                    </Card> : undefined}
+                                </IconButton>
                             </Tooltip>
                         </div>
                         <div>

@@ -7,5 +7,6 @@ module.exports={
     addNote:"/Notes/addNotes",
     getNote:"/Notes/retrieveNotes?userId=",
     archiveNote:"/Notes/retrieveAllArchieveNotes",
-    Reminder:"/Notes/getAllNotesWhoseReminderIsSet"
+    Reminder:"/Notes/getAllNotesWhoseReminderIsSet",
+    Lables:"/Lable/addLable"
 }

@@ -1,5 +1,5 @@
 import { getAllArchiveNote } from "../../services/userServices";
-import DisplayIcon from "../Note/DisplayIcon";
+import DisplayIcon from "../Icons/DisplayIcon";
 import { useEffect } from 'react';
 import { Card, InputBase } from '@material-ui/core';
 import React from 'react';

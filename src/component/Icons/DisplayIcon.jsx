@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Note/DisplayIcon.scss'
+import '../Icons/DisplayIcon.scss'
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
@@ -59,7 +59,13 @@ export default function DisplayIcon() {
     const [cards, setCards] = React.useState(false);
     const moreOptionHandler = () => {
         setCards(!cards);
+        setLableDatePicker(false)
     }
+    const [lablePickers, setLableDatePicker] = React.useState(false);
+    const LableDate = () => {
+        setLableDatePicker(!lablePickers)
+    }
+
     return (
         <div className="iconContainers">
             <Tooltip title="Reminde me">
@@ -99,14 +105,18 @@ export default function DisplayIcon() {
                 <IconButton onClick={moreOptionHandler} > <MoreVertOutlinedIcon />
                 </IconButton>
             </Tooltip>
-            {cards ? <Card id="cardMoreOptions">
+            {/* {cards ? <Card id="cardMoreOptions"> */}
+            {(!lablePickers && cards) ? <Card id="cardMoreOptions">
                 <div>
                     Delete note
                     </div>
-                <div>
+                <div onClick={LableDate}>
                     Add Label
                             </div>
+            </Card> : lablePickers ? <Card id="cardMoreOptionss">
+                Label note
             </Card> : undefined}
-        </div>
+                              
+        </div >
     )
 }

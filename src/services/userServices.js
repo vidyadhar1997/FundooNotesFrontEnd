@@ -105,6 +105,22 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function addLable() {
+    try {
+      const response = axios.get(process.env.REACT_APP_SERVER_URL+userApiConstant.Lables,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
   
   
   
