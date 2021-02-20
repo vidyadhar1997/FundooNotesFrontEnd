@@ -1,4 +1,3 @@
-
 import DisplayIcon from "../Icons/DisplayIcon";
 import { useEffect } from 'react';
 import { Card, InputBase } from '@material-ui/core';
@@ -33,6 +32,8 @@ return (
                 <Card id="Card"  style={{ backgroundColor: note.colour }}>
                     <InputBase multiline value={note.title}></InputBase>
                     <InputBase multiline value={note.description}></InputBase>
+                    <InputBase multiline value={note.reminder}></InputBase>
+                    {/* <Chip avatar={<Avatar>{note.reminder}</Avatar>}/> */}
                     <div className="displayIcon"><DisplayIcon/></div>
                 </Card>
                 </div>

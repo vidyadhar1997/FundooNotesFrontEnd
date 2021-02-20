@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { Card, InputBase } from '@material-ui/core';
 import '../DisplayNote/DisplayNote.scss'
 import DisplayIcon from '../Icons/DisplayIcon';
-
-
+import Chip from '@material-ui/core/Chip';
+import {format} from 'date-fns'
 export default function DisplayNote() {
     const [data, setdata] = React.useState([]);
 
@@ -21,7 +21,6 @@ export default function DisplayNote() {
     useEffect(() => {
         getNote()
     }, []);
-
     return (
         <div className="users">
             {data.reverse().map((note, index) => {
@@ -30,7 +29,11 @@ export default function DisplayNote() {
                     <Card id="Card"  style={{ backgroundColor: note.colour }}>
                         <InputBase multiline value={note.title}></InputBase>
                         <InputBase multiline value={note.description}></InputBase>`
-                        <InputBase multiline value={note.label}></InputBase>`
+                    <div>
+                    { ( note.reminder!="" )? <Chip label={format(new Date(note.reminder),"yyyy/MM/dd:hh:mm")}/>:undefined}
+                    
+                     { note.label!="" ? <Chip label={note.label}/>:undefined}
+                     </div>
                         <div className="displayIcon"><DisplayIcon/></div>
                     </Card>
                     </div>

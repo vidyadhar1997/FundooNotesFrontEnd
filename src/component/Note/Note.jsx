@@ -82,6 +82,7 @@ export default function Notes() {
     const reminder = () => {
         setReminders(!reminders)
         setReminderDatePicker(false)
+        setLableDatePicker(false)
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -139,16 +140,34 @@ export default function Notes() {
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
-
+    const [deleteReminder, setDeleteReminder] = React.useState(false);
     const handleDelete = () => {
-        console.info('You clicked the delete icon.');
+        setsevDate('')
+        setDeleteReminder(!deleteReminder)
+        console.info('You clicked the delete Reminder icon.');
+    };
+    const [deleteLable, setDeleteLable] = React.useState(false);
+    const handleDeletes = () => {
+        setsaveLable('')
+        setDeleteLable(!deleteLable)
+        console.info('You clicked the delete Time icon.');
     };
 
     const handleClicks = () => {
         console.info('You clicked the Chip.');
     };
-
+const [saveDate,setsevDate]= React.useState('');
     const handleReminderNote = () => {
+        setsevDate(selectedDate.toString()),
+        setReminderDatePicker(false)
+        setReminders(false)
+
+    }
+    const [saveLable,setsaveLable]= React.useState('');
+    const handleLableClicks = () => {
+        setsaveLable(Labless)
+       // setReminderDatePicker(false)
+       // setReminders(false)
 
     }
     const [cards, setCards] = React.useState(false);
@@ -176,7 +195,8 @@ export default function Notes() {
                 archive: archive,
                 userId: parseInt(window.localStorage.getItem('userId')),
                 colour: colour,
-                reminder: selectedDate.toString(),
+                
+                reminder: selectedDate.toString() !=  new Date('2021-02-18T21:11:54').toString()? selectedDate.toString():"",
                 label:Labless
             }
             createNote(noteData).then((responce) => {
@@ -218,13 +238,24 @@ export default function Notes() {
                             InputProps={{ disableUnderline: true }}
                         />
                     </div>
+                    <div className="ChipData">
+                   { saveDate != ''?
                     <Chip
                         icon={<AccessTimeIcon fontSize="small" />}
-                        label="Clickable deletable"
+                        label={saveDate}
                         onClick={handleClicks}
                         onDelete={handleDelete}
                         id="chip"
-                    />
+                    />:undefined}
+                      { saveLable != ''?
+                    <Chip
+                        icon={<AccessTimeIcon fontSize="small" />}
+                        label={saveLable}
+                        onClick={handleClicks}
+                        onDelete={handleDeletes}
+                        id="chip"
+                    />:undefined}
+                    </div>
                     <div className="icon">
                         <div className="iconContainer">
                             <Tooltip title="Reminde me">
@@ -245,7 +276,7 @@ export default function Notes() {
 
                                     </Card> : reminderPicker ? <Card id="cards">
                                         <div className="arrowss">
-                                            <ArrowBackIcon fontSize="small" onClick={arrowHandle} /> date & time:
+                                            <ArrowBackIcon fontSize="small" onClick={arrowHandle} /> Pick date & time:
                                          </div>
                                         <div className="bor"></div>
                                         <div>
@@ -278,7 +309,7 @@ export default function Notes() {
                                             </MuiPickersUtilsProvider>
                                         </div>
                                         <div>
-                                            <Button id="button" onClick={handleReminderNote}>save</Button>
+                                            <Button id="buttonsss" onClick={handleReminderNote}>save</Button>
                                         </div>
                                     </Card>
 
@@ -326,6 +357,9 @@ export default function Notes() {
                                          </div>
                                             <div>
                                                 <InputBase placeholder="Enter label name" onChange={LableHandler}/>
+                                            </div>
+                                            <div onClick={handleLableClicks}>
+                                                Create
                                             </div>
                                         </div>
                                     </Card> : undefined}

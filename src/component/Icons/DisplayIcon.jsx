@@ -11,6 +11,7 @@ import Popper from '@material-ui/core/Popper';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
+import InputBase from '@material-ui/core/InputBase';
 
 export default function DisplayIcon() {
 
@@ -65,6 +66,11 @@ export default function DisplayIcon() {
     const LableDate = () => {
         setLableDatePicker(!lablePickers)
     }
+    const [Labless, setLabel] = React.useState('');
+    const LableHandler=(event)=>{
+        setLabel(event.target.value)
+        console.log("lable",Labless)
+    }
 
     return (
         <div className="iconContainers">
@@ -115,8 +121,11 @@ export default function DisplayIcon() {
                             </div>
             </Card> : lablePickers ? <Card id="cardMoreOptionss">
                 Label note
+                <div>
+                    <InputBase placeholder="Enter label name" onChange={LableHandler} />
+                </div>
             </Card> : undefined}
-                              
+
         </div >
     )
 }
