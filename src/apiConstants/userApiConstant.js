@@ -11,5 +11,6 @@ module.exports={
     Lables:"/Lable/addLable",
     Trash:"/Notes/retrieveAllTrashNotes",
     TrashById:"/Notes/trashOrUntrash?noteId=",
-    ArchiveNoteById:"/Notes/archieveOrUnarchieve"
+    ArchiveNoteById:"/Notes/archieveOrUnarchieve",
+    DelteForever:"/Notes/"
 }

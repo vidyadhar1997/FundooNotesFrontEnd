@@ -169,5 +169,20 @@ export function login(loginData) {
       return error;
     }
   }
-  
+
+export function deleteNoteForever(noteId) {
+  try {
+    const response = axios.delete(process.env.REACT_APP_SERVER_URL+userApiConstant.DelteForever+noteId,
+    {
+      headers: {
+          Authorization:"Bearer "+localStorage.getItem('token')
+      }
+    }
+  );
+    return response;
+  }
+  catch (error) {
+    return error;
+  }
+} 
   

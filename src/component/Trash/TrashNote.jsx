@@ -8,6 +8,7 @@ import { trashNotes } from "../../services/userServices";
 import Chip from '@material-ui/core/Chip';
 import {format} from 'date-fns'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import DeleteIcon from "../Icons/DeleteIcon";
 
 export default function TrashNote(){
     const [data, setData] = React.useState([]);
@@ -44,7 +45,7 @@ return (
                    />:undefined}
                      { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
                         id="chip"/>:undefined}
-                    <div className="displayIcon"><DisplayIcon/></div>
+                    <div className="displayIcon"><DeleteIcon Notedata={note}/></div>
                 </Card>
                 </div>
                 )
