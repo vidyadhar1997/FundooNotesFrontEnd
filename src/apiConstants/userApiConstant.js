@@ -12,5 +12,7 @@ module.exports={
     Trash:"/Notes/retrieveAllTrashNotes",
     TrashById:"/Notes/trashOrUntrash?noteId=",
     ArchiveNoteById:"/Notes/archieveOrUnarchieve",
-    DelteForever:"/Notes/"
+    DelteForever:"/Notes/",
+    EmptyTrash:"/Notes/emptyTrash"
+
 }

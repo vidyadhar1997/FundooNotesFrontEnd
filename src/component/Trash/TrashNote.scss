@@ -16,6 +16,7 @@
     background-color: white;
     border-radius: 10px;
     text-decoration: black;
+    margin-top: 40px;
     }
     
     .users{
@@ -36,6 +37,27 @@
         flex-direction: row;
         margin-left: -15px;
         margin-bottom: -5px;
+    }
+    .ComponentHeader{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: -60px;
+        margin-bottom: 60px;
+    }
+
+    .Empty:hover{
+        cursor:pointer;
+        color: #1a73e8;
+        font-size: 15px;
+        // width: 30px;
+        // height: 30px;
+        // margin-left: 16px;
+    }
+
+    .Info{
+        font-size: 15px;
     }
     .dk:hover{
         background-clip: padding-box;

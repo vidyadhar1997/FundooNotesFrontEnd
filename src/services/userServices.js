@@ -153,6 +153,22 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function emptyTrash() {
+    try {
+      const response = axios.delete(process.env.REACT_APP_SERVER_URL+userApiConstant.EmptyTrash,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {EmptyTrash
+      return error;
+    }
+  }
   
   export function archiveNotesById(req) {
     try {

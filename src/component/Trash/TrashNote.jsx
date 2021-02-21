@@ -2,15 +2,15 @@ import DisplayIcon from "../Icons/DisplayIcon";
 import { useEffect } from 'react';
 import { Card, InputBase } from '@material-ui/core';
 import React from 'react';
-import '../Archive/ArchiveNote.scss'
+import '../Trash/TrashNote.scss'
 import AppBarAndDrawer from "../AppBarAndDrawer/AppBarAndDrawer";
-import { trashNotes } from "../../services/userServices";
+import { trashNotes,emptyTrash } from "../../services/userServices";
 import Chip from '@material-ui/core/Chip';
 import {format} from 'date-fns'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import DeleteIcon from "../Icons/DeleteIcon";
 
-export default function TrashNote(){
+export default function TrashNote(props){
     const [data, setData] = React.useState([]);
 
     const getTrashNote = () => {
@@ -21,16 +21,36 @@ export default function TrashNote(){
             console.log("error is ", error)
         });
     }
+
     useEffect(() => {
         getTrashNote()
     }, []);
 
+    const handleEmptyTrash = () => {
+        emptyTrash ().then((responce) => {
+            console.log("resp ", responce.data.data)
+            // setData(responce.data.data)
+        }).catch((error) => {
+            console.log("error is ", error)
+        });
+
+    }
+
     const handleDelete = () => {
         console.info('You clicked the delete Reminder icon.');
     };
+
 return (
     <div>
         <AppBarAndDrawer/>
+        <div className="ComponentHeader">
+            <div className="Info">
+                <p>Notes is Trash are deleted after 7 days</p>
+            </div>
+            <div className="Empty" onClick={handleEmptyTrash}>
+                <b>Empty Trash</b>
+            </div>
+        </div>
     <div className="users">
         {data.reverse().map((note, index) => {
             return (

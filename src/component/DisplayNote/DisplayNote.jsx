@@ -42,8 +42,7 @@ export default function DisplayNote() {
                         id="chip"
                    />:undefined}
 
-
-                     { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
+                    { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
                         id="chip"/>:undefined}
                      </div>
                         <div className="displayIcon"><DisplayIcon Notedata={note}/></div>
