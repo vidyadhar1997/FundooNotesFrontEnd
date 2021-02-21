@@ -47,3 +47,62 @@
     text-align: center;
     margin-top: 31px
   }
+
+  #cardssssss{
+    width: 270px;
+    height: 270px;
+    display: flex;
+    position: fixed;
+    // right: 8px;
+    // top: 65px;
+    border-radius: 7px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    margin-top: 335px;
+    margin-right: 770px;
+}
+
+.reminderMesssss{
+  display: flex;
+  height: 73%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 226px;
+}
+.arrowssss{
+  display: flex;
+  justify-content: start;
+  width: 94%;
+  padding-top: 39px;
+  padding-bottom: 7px;
+}
+.borders{
+  width: 100%;
+  border-bottom: groove;
+  border-width: 0.5px;
+}
+.times{
+  width: 101%;
+  display: flex;
+  justify-content: center;
+}
+
+#buttonssss{
+  margin-right: 31px;
+  margin-left: 229px;
+  padding-bottom: 40px;
+ }
+ .main-icon-con{
+display: flex;
+width: 100%;
+flex-direction: column;
+align-items: end;
+ }
+ .pin-icon{
+   position: relative;
+   bottom:85px;
+   left:230px;
+   //height:inherit
+ }

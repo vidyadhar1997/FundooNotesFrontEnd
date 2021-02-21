@@ -1,7 +1,6 @@
 import React from 'react';
 import '../Icons/DisplayIcon.scss'
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import IconButton from '@material-ui/core/IconButton';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import { Tooltip } from "@material-ui/core";
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
@@ -12,7 +11,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import InputBase from '@material-ui/core/InputBase';
-import { archiveNotesById, trashNotesById } from '../../services/userServices';
+import { archiveNotesById, trashNotesById ,pinOrUnpin} from '../../services/userServices';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker
+} from '@material-ui/pickers';
+import { Button } from '@material-ui/core';
+import Pin from "../../assets/push.svg"
+import Push from "../../assets/pin.svg"
+import IconButton from '@material-ui/core/IconButton';
 
 export default function DisplayIcon(props) {
 
@@ -97,15 +108,113 @@ export default function DisplayIcon(props) {
         // }
     }
 
+    const [reminderPicker, setReminderDatePicker] = React.useState(false);
+    const reminderDate = () => {
+        setReminderDatePicker(!reminderPicker)
+    }
+    const [reminders, setReminders] = React.useState(false);
+    const reminder = () => {
+        setReminders(!reminders)
+        setReminderDatePicker(false)
+        setLableDatePicker(false)
+    }
+    const arrowHandle = () => {
+        setReminderDatePicker(false)
+    }
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2021-02-18T21:11:54'));
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+    const [saveDate,setsevDate]= React.useState('');
+    const handleReminderNote = () => {
+        setsevDate(selectedDate.toString()),
+        setReminderDatePicker(false)
+        setReminders(false)
+    }
+
+    const [pin, unpin] = React.useState(false);
+    const pinss = () => {
+        const noteId=props.Notedata.noteId
+        
+     pinOrUnpin(noteId).then((responce) => {
+               console.log("resp ", responce)
+               unpin(!pin);
+           }).catch((error) => {
+               console.log("error is ", error)
+           });
+        // if (pin === false) {
+        //     unpin(true);
+        //     console.log("Note pinned");
+        // }
+        // else {
+        //     unpin(false);
+        //     console.log("Note unpinned");
+        // }
+    }
     return (
         <div className="iconContainers">
+             <div className="pin-icon">
+                {props.Notedata.pin ?  <Tooltip title="Unpin note"><IconButton onClick={pinss}   ><img id="pin" src={Push}/>
+                            </IconButton></Tooltip>: <Tooltip title="Pin note"><IconButton  onClick={pinss}><img id="pin" src={Pin} />
+                            </IconButton></Tooltip>}
+                        </div>
             <Tooltip title="Reminde me">
-                <div>
-                    <IconButton>
+                    <IconButton  onClick={reminder}>
                         <AddAlertOutlinedIcon fontSize="small" />
                     </IconButton>
-                </div>
             </Tooltip>
+            {(!reminderPicker && reminders) ? <Card id="cardssssss">
+                                        <div className="reminderMesssss">
+                                            <div className="Remind">Reminder:</div>
+                                            <div className="Later">Later today:</div>
+                                            <div className="Tomorrow">Tomorrow:</div>
+                                            <div className="week">Next week:</div>
+                                            <div className="week" onClick={reminderDate}>
+                                                <AccessTimeIcon fontSize="small" />Pick date & time:
+                                             </div>
+                                        </div>
+
+                                    </Card> : reminderPicker ? <Card id="cardssssss">
+                                        <div className="arrowssss">
+                                            <ArrowBackIcon fontSize="small" onClick={arrowHandle} /> Pick date & time:
+                                         </div>
+                                        <div className="borders"></div>
+                                        <div>
+                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <KeyboardDatePicker
+                                                    margin="normal"
+                                                    id="date-picker-dialog"
+                                                    label="Date picker dialog"
+                                                    format="MM/dd/yyyy"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change date',
+                                                    }}
+                                                />
+                                            </MuiPickersUtilsProvider>
+                                        </div>
+                                        <div className="times">
+                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <KeyboardTimePicker
+                                                    margin="normal"
+                                                    id="time-picker"
+                                                    label="Time picker"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change time',
+                                                    }}
+                                                />
+                                            </MuiPickersUtilsProvider>
+                                        </div>
+                                        <div>
+                                            <Button id="buttonssss" onClick={handleReminderNote}>save</Button>
+                                        </div>
+                                    </Card>
+
+                                            : undefined}
+                
             <Tooltip title="Colabrator">
                 <div><IconButton > <PersonAddOutlinedIcon fontSize="small" /> </IconButton></div>
             </Tooltip>

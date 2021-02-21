@@ -7,7 +7,9 @@ import DisplayIcon from '../Icons/DisplayIcon';
 import Chip from '@material-ui/core/Chip';
 import {format} from 'date-fns'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-export default function DisplayNote() {
+
+
+export default function DisplayNote(props) {
     const [data, setdata] = React.useState([]);
 
     const getNote = () => {
@@ -26,6 +28,7 @@ export default function DisplayNote() {
     const handleDelete = () => {
         console.info('You clicked the delete Reminder icon.');
     };
+
 
     return (
         <div className="users">

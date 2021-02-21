@@ -13,6 +13,7 @@ module.exports={
     TrashById:"/Notes/trashOrUntrash?noteId=",
     ArchiveNoteById:"/Notes/archieveOrUnarchieve",
     DelteForever:"/Notes/",
-    EmptyTrash:"/Notes/emptyTrash"
+    EmptyTrash:"/Notes/emptyTrash",
+    PinorUnpin:"/Notes/pinOrUnpin?noteId="
 
 }

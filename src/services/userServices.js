@@ -202,3 +202,18 @@ export function deleteNoteForever(noteId) {
   }
 } 
   
+export function pinOrUnpin(noteId) {
+  try {
+    const response = axios.put(process.env.REACT_APP_SERVER_URL+userApiConstant.PinorUnpin+noteId,null,
+    {
+      headers: {
+          Authorization:"Bearer "+localStorage.getItem('token')
+      }
+    }
+  );
+    return response;
+  }
+  catch (error) {
+    return error;
+  }
+}

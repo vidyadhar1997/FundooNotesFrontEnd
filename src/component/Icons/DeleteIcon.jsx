@@ -6,7 +6,6 @@ import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import '../Icons/DeleteIcon.scss'
 import { deleteNoteForever, trashNotesById } from '../../services/userServices';
 
-
 export default function DeleteIcon(props) {
     const deleteForever = () => {
         console.log("props.Notedata.noteId ",props.Notedata.noteId)
