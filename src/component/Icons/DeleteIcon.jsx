@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import '../Icons/DeleteIcon.scss'
-import { deleteNoteForever } from '../../services/userServices';
+import { deleteNoteForever, trashNotesById } from '../../services/userServices';
 
 
 export default function DeleteIcon(props) {
@@ -19,6 +19,16 @@ export default function DeleteIcon(props) {
            });
         }
 
+       const restoreNotes = () => {
+        console.log("props.Notedata.noteId ",props.Notedata.noteId)
+        const noteId=props.Notedata.noteId
+            trashNotesById (noteId).then((responce) => {
+                console.log("resp ", responce)
+            }).catch((error) => {
+                console.log("error is ", error)
+            });
+       }
+
     return(
         <div className="iconsContainer">
         <Tooltip title="Delete forever">
@@ -28,7 +38,7 @@ export default function DeleteIcon(props) {
     </Tooltip>
       <Tooltip title="Restore">
       <IconButton>
-              < RestoreFromTrashIcon fontSize="small" />
+              < RestoreFromTrashIcon fontSize="small" onClick={restoreNotes} />
           </IconButton>
   </Tooltip>
   </div>
