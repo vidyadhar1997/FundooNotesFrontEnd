@@ -44,7 +44,7 @@ return (
                    />:undefined}
                      { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
                         id="chip"/>:undefined}
-                    <div className="displayIcon"><DisplayIcon/></div>
+                    <div className="displayIcon"><DisplayIcon  Notedata={note}/></div>
                 </Card>
                 </div>
                 )
