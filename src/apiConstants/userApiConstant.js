@@ -9,5 +9,7 @@ module.exports={
     archiveNote:"/Notes/retrieveAllArchieveNotes",
     Reminder:"/Notes/getAllNotesWhoseReminderIsSet",
     Lables:"/Lable/addLable",
-    Trash:"/Notes/retrieveAllTrashNotes"
+    Trash:"/Notes/retrieveAllTrashNotes",
+    TrashById:"/Notes/trashOrUntrash?noteId=",
+    ArchiveNoteById:"/Notes/archieveOrUnarchieve"
 }

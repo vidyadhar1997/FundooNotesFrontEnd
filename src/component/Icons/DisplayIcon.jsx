@@ -12,20 +12,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import InputBase from '@material-ui/core/InputBase';
+import { archiveNotesById, trashNotesById } from '../../services/userServices';
 
-export default function DisplayIcon() {
+export default function DisplayIcon(props) {
 
-    const [archive, unArchive] = React.useState(false);
-    const archives = () => {
-        if (archive === false) {
-            unArchive(true);
-            console.log("Note Archive");
-        }
-        else {
-            unArchive(false);
-            console.log("Note unArchive");
-        }
-    }
     const useStyles = makeStyles((theme) => ({
         paper: {
             padding: theme.spacing(1),
@@ -72,6 +62,41 @@ export default function DisplayIcon() {
         console.log("lable",Labless)
     }
 
+    const deleteNote=()=>{
+        console.log("props.Notedata.noteId ",props.Notedata.noteId)
+        let noteId=props.Notedata.noteId
+            trashNotesById(noteId).then((responce) => {
+                console.log("resp ", responce)
+            }).catch((error) => {
+                console.log("error is ", error)
+            });
+        //trashNotesById
+        // trashNotesById(noteId).then(responce=>{
+        //     console.log("deleted ",responce)
+        // }).catch((err)=>{
+        //     console.log("err",err)
+        // })
+    }
+    const [archive, unArchive] = React.useState(false);
+    const archives = () => {
+         console.log("props.Notedata.noteId ",props.Notedata.noteId)
+      
+     const req={ noteId:props.Notedata.noteId}
+     archiveNotesById(req).then((responce) => {
+                console.log("resp ", responce)
+            }).catch((error) => {
+                console.log("error is ", error)
+            });
+        // if (archive === false) {
+        //     unArchive(true);
+        //     console.log("Note Archive");
+        // }
+        // else {
+        //     unArchive(false);
+        //     console.log("Note unArchive");
+        // }
+    }
+
     return (
         <div className="iconContainers">
             <Tooltip title="Reminde me">
@@ -113,7 +138,7 @@ export default function DisplayIcon() {
             </Tooltip>
             {/* {cards ? <Card id="cardMoreOptions"> */}
             {(!lablePickers && cards) ? <Card id="cardMoreOptions">
-                <div>
+                <div onClick={deleteNote}>
                     Delete note
                     </div>
                 <div onClick={LableDate}>

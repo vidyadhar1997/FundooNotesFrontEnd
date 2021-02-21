@@ -44,7 +44,8 @@
   flex-wrap: wrap;
 }
 #chip{
-  width: 177px;
+  max-width: 187px;
+  margin: 5px;
 }
 #addLable{
   display: flex;
@@ -120,9 +121,6 @@
   margin-right: 31px;
   margin-left: 229px;
   padding-bottom: 40px;
- }
- .ChipData{
-
  }
 
  #NoteColor{

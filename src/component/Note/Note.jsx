@@ -195,7 +195,6 @@ const [saveDate,setsevDate]= React.useState('');
                 archive: archive,
                 userId: parseInt(window.localStorage.getItem('userId')),
                 colour: colour,
-                
                 reminder: selectedDate.toString() !=  new Date('2021-02-18T21:11:54').toString()? selectedDate.toString():"",
                 label:Labless
             }

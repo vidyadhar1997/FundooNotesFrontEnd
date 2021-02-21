@@ -137,6 +137,37 @@ export function login(loginData) {
       return error;
     }
   }
+
+  export function trashNotesById(noteId) {
+    try {
+      const response = axios.put(process.env.REACT_APP_SERVER_URL+userApiConstant.TrashById+noteId,null,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
   
+  export function archiveNotesById(req) {
+    try {
+      const response = axios.post(process.env.REACT_APP_SERVER_URL+userApiConstant.ArchiveNoteById,req,
+      {
+        headers: {
+            Authorization:"Bearer "+localStorage.getItem('token')
+        }
+      }
+    );
+      return response;
+    }
+    catch (error) {
+      return error;
+    }
+  }
   
   
