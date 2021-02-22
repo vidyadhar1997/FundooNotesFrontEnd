@@ -217,3 +217,19 @@ export function pinOrUnpin(noteId) {
     return error;
   }
 }
+
+// export function addColor(noteId,color) {
+//   try {
+//     const response = axios.put(process.env.REACT_APP_SERVER_URL+userApiConstant.PinorUnpin+color,null,
+//     {
+//       headers: {
+//           Authorization:"Bearer "+localStorage.getItem('token')
+//       }
+//     }
+//   );
+//     return response;
+//   }
+//   catch (error) {
+//     return error;
+//   }
+// }

@@ -9,6 +9,7 @@ module.exports = {
         })
         // ...
       ],
+     
     module: {
         rules: [
             {
@@ -42,7 +43,11 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        fallback: {
+            util: require.resolve("util/")
+          },
+        extensions: ['*', '.js', '.jsx'],
+
     },
     output: {
         path: __dirname + '/dist',

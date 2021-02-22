@@ -12,6 +12,7 @@ export default function DeleteIcon(props) {
      
         const noteId=props.Notedata.noteId
      deleteNoteForever(noteId).then((responce) => {
+                //props.GetData()
                console.log("resp ", responce)
            }).catch((error) => {
                console.log("error is ", error)
@@ -22,6 +23,7 @@ export default function DeleteIcon(props) {
         console.log("props.Notedata.noteId ",props.Notedata.noteId)
         const noteId=props.Notedata.noteId
             trashNotesById (noteId).then((responce) => {
+                //props.GetData()
                 console.log("resp ", responce)
             }).catch((error) => {
                 console.log("error is ", error)

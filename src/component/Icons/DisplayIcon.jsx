@@ -77,6 +77,7 @@ export default function DisplayIcon(props) {
         console.log("props.Notedata.noteId ", props.Notedata.noteId)
         let noteId = props.Notedata.noteId
         trashNotesById(noteId).then((responce) => {
+            props.GetData()
             console.log("resp ", responce)
         }).catch((error) => {
             console.log("error is ", error)
@@ -94,6 +95,7 @@ export default function DisplayIcon(props) {
 
         const req = { noteId: props.Notedata.noteId }
         archiveNotesById(req).then((responce) => {
+            props.GetData()
             console.log("resp ", responce)
         }).catch((error) => {
             console.log("error is ", error)
@@ -137,6 +139,7 @@ export default function DisplayIcon(props) {
         const noteId = props.Notedata.noteId
 
         pinOrUnpin(noteId).then((responce) => {
+            props.GetData()
             console.log("resp ", responce)
             unpin(!pin);
         }).catch((error) => {
@@ -149,7 +152,7 @@ export default function DisplayIcon(props) {
                 {props.Notedata.pin ? <Tooltip title="Unpin note"><IconButton onClick={pinss}><img id="pin" src={Push} />
                 </IconButton></Tooltip> : <Tooltip title="Pin note"><IconButton onClick={pinss}><img id="pin" src={Pin} />
                 </IconButton></Tooltip>}
-            </div>
+            </div> 
             <Tooltip title="Reminde me">
                 <IconButton onClick={reminder}>
                     <AddAlertOutlinedIcon fontSize="small" />
@@ -163,7 +166,7 @@ export default function DisplayIcon(props) {
                     <div className="week">Next week:</div>
                     <div className="week" onClick={reminderDate}>
                         <AccessTimeIcon fontSize="small" />Pick date & time:
-                                             </div>
+                    </div>
                 </div>
 
             </Card> : reminderPicker ? <Card id="cardssssss">
@@ -256,7 +259,6 @@ export default function DisplayIcon(props) {
                 </div>
                 </div>
             </Card> : undefined}
-
-        </div >
+            </div >
     )
 }

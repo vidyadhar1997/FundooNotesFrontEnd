@@ -10,20 +10,20 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 
 export default function DisplayNote(props) {
-    const [data, setdata] = React.useState([]);
+    // const [data, setdata] = React.useState([]);
 
-    const getNote = () => {
-        let userid=parseInt(window.localStorage.getItem('userId'));
-        displayNote(userid).then((responce) => {
-            console.log("resp ", responce.data.data)
-            setdata(responce.data.data)
-        }).catch((error) => {
-            console.log("error is ", error)
-        });
-    }
-    useEffect(() => {
-        getNote()
-    }, []);
+    // const getNote = () => {
+    //     let userid=parseInt(window.localStorage.getItem('userId'));
+    //     displayNote(userid).then((responce) => {
+    //         console.log("resp ", responce.data.data)
+    //         setdata(responce.data.data)
+    //     }).catch((error) => {
+    //         console.log("error is ", error)
+    //     });
+    // }
+    // useEffect(() => {
+    //     getNote()
+    // }, []);
 
     const handleDelete = () => {
         console.info('You clicked the delete Reminder icon.');
@@ -32,7 +32,7 @@ export default function DisplayNote(props) {
 
     return (
         <div className="users">
-            {data.reverse().filter((data) => data.isTrash === false).filter((data) => data.archive===false).map((note, index) => {
+            {props.item.reverse().filter((data) => data.isTrash === false).filter((data) => data.archive===false).map((note, index) => {
                 return (
                     <div className="dk">
                     <Card id="Card"  style={{ backgroundColor: note.colour }}>
@@ -48,7 +48,7 @@ export default function DisplayNote(props) {
                     { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
                         id="chip"/>:undefined}
                      </div>
-                        <div className="displayIcon"><DisplayIcon Notedata={note}/></div>
+                        <div className="displayIcon"><DisplayIcon item={props.item} GetData={props.GetData} Notedata={note}/></div>
                     </Card>
                     </div>
                 )

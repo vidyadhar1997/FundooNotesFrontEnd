@@ -14,6 +14,7 @@ module.exports={
     ArchiveNoteById:"/Notes/archieveOrUnarchieve",
     DelteForever:"/Notes/",
     EmptyTrash:"/Notes/emptyTrash",
-    PinorUnpin:"/Notes/pinOrUnpin?noteId="
+    PinorUnpin:"/Notes/pinOrUnpin?noteId=",
+    // Colour:"/Notes/addColor?noteId"
 
 }

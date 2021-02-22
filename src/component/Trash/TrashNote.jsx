@@ -29,6 +29,7 @@ export default function TrashNote(props){
     const handleEmptyTrash = () => {
         emptyTrash ().then((responce) => {
             console.log("resp ", responce.data.data)
+            //props.GetData()
             // setData(responce.data.data)
         }).catch((error) => {
             console.log("error is ", error)
@@ -65,7 +66,7 @@ return (
                    />:undefined}
                      { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
                         id="chip"/>:undefined}
-                    <div className="displayIcon"><DeleteIcon Notedata={note}/></div>
+                    <div className="displayIcon"><DeleteIcon  Notedata={note}/></div>
                 </Card>
                 </div>
                 )

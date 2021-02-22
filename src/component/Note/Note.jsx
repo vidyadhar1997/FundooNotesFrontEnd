@@ -30,7 +30,8 @@ import {
 } from '@material-ui/pickers';
 import { setDate } from "date-fns";
 
-export default function Notes() {
+
+export default function Notes(props) {
     const [card, setCard] = React.useState(false);
     const [title, settitle] = React.useState('');
     const [Note, setNote] = React.useState('');
@@ -201,6 +202,8 @@ const [saveDate,setsevDate]= React.useState('');
             createNote(noteData).then((responce) => {
                 console.log("new notes created successfully", responce)
                 setCard(!card)
+                props.GetData()
+                // props.Get()
                 // history.push("/home")
             }).catch((error) => {
                 console.log("error is ", error)
