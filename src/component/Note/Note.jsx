@@ -311,8 +311,7 @@ const [saveDate,setsevDate]= React.useState('');
                                             <Button id="buttonsss" onClick={handleReminderNote}>save</Button>
                                         </div>
                                     </Card>
-
-                                            : undefined}
+                                : undefined}
                                 </div>
                             </Tooltip>
                             <Tooltip title="Colabrator">
@@ -331,8 +330,6 @@ const [saveDate,setsevDate]= React.useState('');
                                     </Popper>
                                 </div>
                             </Tooltip>
-
-
                             <Tooltip title="image add">
                                 <div>
                                     <IconButton >
