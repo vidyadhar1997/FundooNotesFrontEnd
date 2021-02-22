@@ -16,5 +16,6 @@ module.exports={
     EmptyTrash:"/Notes/emptyTrash",
     PinorUnpin:"/Notes/pinOrUnpin?noteId=",
     // Colour:"/Notes/addColor?noteId"
+    UpdateNotes:"/Notes/updateNotes"
 
 }

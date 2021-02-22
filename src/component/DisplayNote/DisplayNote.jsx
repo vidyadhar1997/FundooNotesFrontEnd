@@ -51,7 +51,7 @@ export default function DisplayNote(props) {
                         <InputBase multiline value={note.description} onClick={()=>updateCard(note)}></InputBase>`
                     <div>
                     { ( note.reminder!="" )? <Chip  icon={<AccessTimeIcon fontSize="small"  />}
-                        label={format(new Date(note.reminder),"dd/MM/yyyy ,hh:mm")}
+                        // label={format(new Date(note.reminder),"dd/MM/yyyy, hh:mm")}
                         onDelete={handleDelete}
                         id="chip"
                    />:undefined}
@@ -65,12 +65,8 @@ export default function DisplayNote(props) {
                     <Update OpenCards={openDialogue} Notedata={note} updateD={updateD}  close={()=>handleClose}/>
                     </div>
                     </div>
-                    
-                );
-              
-                   
-                
-            })}
+              );
+               })}
         </div>
     )
   

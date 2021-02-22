@@ -3,6 +3,7 @@ import React from 'react';
 import '../Update/Update.scss'
 import { TextField } from '@material-ui/core'
 import DisplayIcon from "../Icons/DisplayIcon";
+import {updatesNotes} from "../../services/userServices";
 
 export default function Update(props){
     
@@ -18,7 +19,38 @@ export default function Update(props){
         console.log("title ", description)
         console.log("prop ",props.updateD)
     }
-    
+    // const updateNotesData=()=>{
+        
+    //     updatesNotes
+    // }
+    const updateNotesData = () => {
+        if (props.updateD.title.length > 0 || props.updateD.Note.length > 0) {
+            const notesData = {
+                title: title,
+                description:description,
+                pin: props.updateD.pin,
+                archive: props.updateD.archive,
+                userId: props.updateD.userId,
+                colour:props.updateD.colour,
+                reminder: props.updateD.reminder,
+                label: props.updateD.Labless,
+                noteId:props.updateD.noteId
+            }
+            updatesNotes(notesData).then((responce) => {
+                console.log("new notes created successfully", responce)
+                //setCard(!card)
+                //props.GetData()
+                // props.Get()
+                // history.push("/home")
+            }).catch((error) => {
+                console.log("error is ", error)
+            })
+        }
+        else {
+            console.log("title and discription should not be empty")
+        }
+    }
+
     return(
         <div>
         <div className='dialogContainer'>
@@ -52,6 +84,9 @@ export default function Update(props){
                     </div>
                     <div>
                     <DisplayIcon Notedata={props.updateD}/>
+                    <div onClick={updateNotesData}>
+                        Close
+                        </div>
                     </div>
             </div></Dialog>
      </div>
