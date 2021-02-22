@@ -148,11 +148,11 @@ export default function DisplayIcon(props) {
     }
     return (
         <div className="iconContainers">
-            <div className="pin-icon">
+            {/* <div className="pin-icon">
                 {props.Notedata.pin ? <Tooltip title="Unpin note"><IconButton onClick={pinss}><img id="pin" src={Push} />
                 </IconButton></Tooltip> : <Tooltip title="Pin note"><IconButton onClick={pinss}><img id="pin" src={Pin} />
                 </IconButton></Tooltip>}
-            </div> 
+            </div>  */}
             <Tooltip title="Reminde me">
                 <IconButton onClick={reminder}>
                     <AddAlertOutlinedIcon fontSize="small" />
