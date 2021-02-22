@@ -21,7 +21,12 @@
   margin-left: 95px;
   font-size: 17px;
 }
-#inputBases{
+.inputBases{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#Label{
   display: flex;
   flex-direction: initial;
 }
