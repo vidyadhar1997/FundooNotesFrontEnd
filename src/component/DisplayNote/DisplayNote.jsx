@@ -5,9 +5,9 @@ import { Card, InputBase } from '@material-ui/core';
 import '../DisplayNote/DisplayNote.scss'
 import DisplayIcon from '../Icons/DisplayIcon';
 import Chip from '@material-ui/core/Chip';
-import {format} from 'date-fns'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import Update from '../Update/Update';
+import { format } from 'date-fns';
 
 
 export default function DisplayNote(props) {
@@ -50,8 +50,8 @@ export default function DisplayNote(props) {
                         <InputBase multiline value={note.title} onClick={()=>updateCard(note)}></InputBase>
                         <InputBase multiline value={note.description} onClick={()=>updateCard(note)}></InputBase>`
                     <div>
-                    { ( note.reminder!="" )? <Chip  icon={<AccessTimeIcon fontSize="small"  />}
-                        // label={format(new Date(note.reminder),"dd/MM/yyyy, hh:mm")}
+                    { ( note.reminder!="" )? <Chip  icon={<AccessTimeIcon fontSize="small" />}
+                        label={(note.reminder)}
                         onDelete={handleDelete}
                         id="chip"
                    />:undefined}

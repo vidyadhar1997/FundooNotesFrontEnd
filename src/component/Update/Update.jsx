@@ -19,10 +19,7 @@ export default function Update(props){
         console.log("title ", description)
         console.log("prop ",props.updateD)
     }
-    // const updateNotesData=()=>{
-        
-    //     updatesNotes
-    // }
+
     const updateNotesData = () => {
         if (props.updateD.title.length > 0 || props.updateD.Note.length > 0) {
             const notesData = {
@@ -82,11 +79,11 @@ export default function Update(props){
                             InputProps={{ disableUnderline: true }}
                         />
                     </div>
-                    <div>
-                    <DisplayIcon Notedata={props.updateD}/>
+                    <div className="Displays">
+                   <div><DisplayIcon Notedata={props.updateD}/></div> 
                     <div onClick={updateNotesData}>
                         Close
-                        </div>
+                     </div>
                     </div>
             </div></Dialog>
      </div>

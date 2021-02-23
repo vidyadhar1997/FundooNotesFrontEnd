@@ -9,9 +9,8 @@ import { deleteNoteForever, trashNotesById } from '../../services/userServices';
 export default function DeleteIcon(props) {
     const deleteForever = () => {
         console.log("props.Notedata.noteId ",props.Notedata.noteId)
-     
         const noteId=props.Notedata.noteId
-     deleteNoteForever(noteId).then((responce) => {
+        deleteNoteForever(noteId).then((responce) => {
                 //props.GetData()
                console.log("resp ", responce)
            }).catch((error) => {
@@ -31,7 +30,7 @@ export default function DeleteIcon(props) {
        }
 
     return(
-        <div className="iconsContainer">
+        <div className="iconContainers">
         <Tooltip title="Delete forever">
         <IconButton>
                 < DeleteForeverIcon fontSize="small" onClick={deleteForever} />

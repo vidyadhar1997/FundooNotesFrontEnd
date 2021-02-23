@@ -38,7 +38,7 @@ return (
                     <InputBase multiline value={note.title}></InputBase>
                     <InputBase multiline value={note.description}></InputBase>
                     { ( note.reminder!="" )? <Chip  icon={<AccessTimeIcon fontSize="small" />}
-                        label={format(new Date(note.reminder),"dd/MM/yyyy , hh:mm")}
+                        label={(note.reminder)}
                         onDelete={handleDelete}
                         id="chip"
                    />:undefined}

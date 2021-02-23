@@ -16,7 +16,7 @@ export default function TrashNote(props){
     const getTrashNote = () => {
        trashNotes ().then((responce) => {
             console.log("resp ", responce.data.data)
-            setData(responce.data.data)
+            //setData(responce.data.data)
         }).catch((error) => {
             console.log("error is ", error)
         });
@@ -30,7 +30,7 @@ export default function TrashNote(props){
         emptyTrash ().then((responce) => {
             console.log("resp ", responce.data.data)
             //props.GetData()
-            // setData(responce.data.data)
+             //setData(responce.data.data)
         }).catch((error) => {
             console.log("error is ", error)
         });
@@ -60,12 +60,13 @@ return (
                     <InputBase multiline value={note.title}></InputBase>
                     <InputBase multiline value={note.description}></InputBase>
                     { ( note.reminder!="" )? <Chip  icon={<AccessTimeIcon fontSize="small" />}
-                        label={format(new Date(note.reminder),"dd/MM/yyyy , hh:mm")}
+                         label={(note.reminder)}
                         onDelete={handleDelete}
                         id="chip"
                    />:undefined}
                      { note.label!="" ? <Chip label={note.label}  onDelete={handleDelete}
                         id="chip"/>:undefined}
+                        <br></br>
                     <div className="displayIcon"><DeleteIcon  Notedata={note}/></div>
                 </Card>
                 </div>
