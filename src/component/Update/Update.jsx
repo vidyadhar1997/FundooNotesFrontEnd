@@ -21,7 +21,7 @@ export default function Update(props){
     }
 
     const updateNotesData = () => {
-        if (props.updateD.title.length > 0 || props.updateD.Note.length > 0) {
+        console.log("hi")
             const notesData = {
                 title: title,
                 description:description,
@@ -43,10 +43,8 @@ export default function Update(props){
                 console.log("error is ", error)
             })
         }
-        else {
-            console.log("title and discription should not be empty")
-        }
-    }
+      
+    
 
     return(
         <div>
@@ -79,12 +77,12 @@ export default function Update(props){
                             InputProps={{ disableUnderline: true }}
                         />
                     </div>
-                    <div className="Displays">
+                  
                    <div><DisplayIcon Notedata={props.updateD}/></div> 
-                    <div onClick={updateNotesData}>
+                    <div onClick={()=>updateNotesData()}>
                         Close
                      </div>
-                    </div>
+                   
             </div></Dialog>
      </div>
      </div>

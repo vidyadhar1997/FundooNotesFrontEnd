@@ -16,7 +16,7 @@ export default function TrashNote(props){
     const getTrashNote = () => {
        trashNotes ().then((responce) => {
             console.log("resp ", responce.data.data)
-            //setData(responce.data.data)
+            setData(responce.data.data)
         }).catch((error) => {
             console.log("error is ", error)
         });

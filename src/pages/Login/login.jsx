@@ -75,7 +75,6 @@ export default class Login extends Component {
           window.localStorage.setItem('lastname',responce.data.lastName)
           window.localStorage.setItem('email',responce.data.data)
           this.setState({
-            
             snackbarOpen: true,
             snackbarMessage: responce.data.message,
             snackServicity: 'success'
